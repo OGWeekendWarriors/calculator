@@ -42,6 +42,7 @@ static constexpr int PRESSURE_ID = 14;
 static constexpr int ANGLE_ID = 15;
 static constexpr int CURRENCY_ID = 16;
 static constexpr int GRAPHING_ID = 17;
+static constexpr int SYMBOLIC_ID = 18;
 // ^^^ THESE CONSTANTS SHOULD NEVER CHANGE ^^^
 
 wchar_t* towchar_t(int number)
@@ -128,6 +129,17 @@ static const list<NavCategoryInitializer> s_categoryManifest = [] {
                                                                      CategoryGroupType::Calculator,
                                                                      MyVirtualKey::Number2,
                                                                      L"2",
+                                                                     SUPPORTS_ALL,
+                                                                     true,
+                                                                     false },
+                                             NavCategoryInitializer{ ViewMode::Symbolic,
+                                                                     SYMBOLIC_ID,
+                                                                     L"Symbolic",
+                                                                     L"SymbolicMode",
+                                                                     L"\uE8EF",
+                                                                     CategoryGroupType::Calculator,
+                                                                     MyVirtualKey::None,
+                                                                     nullptr,
                                                                      SUPPORTS_ALL,
                                                                      true,
                                                                      false } };
