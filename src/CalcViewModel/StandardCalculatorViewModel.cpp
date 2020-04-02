@@ -37,6 +37,7 @@ namespace
     StringReference IsStandardPropertyName(L"IsStandard");
     StringReference IsScientificPropertyName(L"IsScientific");
     StringReference IsProgrammerPropertyName(L"IsProgrammer");
+    StringReference IsSymbolicPropertyName(L"IsSymbolic");
     StringReference IsAlwaysOnTopPropertyName(L"IsAlwaysOnTop");
     StringReference DisplayValuePropertyName(L"DisplayValue");
     StringReference CalculationResultAutomationNamePropertyName(L"CalculationResultAutomationName");
@@ -600,6 +601,7 @@ bool StandardCalculatorViewModel::IsOperator(Command cmdenum)
     return true;
 }
 
+//This will probably need to be edited to work with symbolic mode
 void StandardCalculatorViewModel::OnButtonPressed(Object ^ parameter)
 {
     m_feedbackForButtonPress = CalculatorButtonPressedEventArgs::GetAuditoryFeedbackFromCommandParameter(parameter);
@@ -1162,6 +1164,13 @@ void StandardCalculatorViewModel::OnPropertyChanged(String ^ propertyname)
             OnButtonPressed(NumbersAndOperatorsEnum::IsStandardMode);
         }
     }
+    else if (propertyname == IsSymbolicPropertyName)
+    {
+        if (IsSymbolic)
+        {
+            OnButtonPressed(NumbersAndOperatorsEnum::IsSymbolicMode);
+        }
+    }
     else if (propertyname == DisplayValuePropertyName)
     {
         RaisePropertyChanged(CalculationResultAutomationNamePropertyName);
@@ -1174,6 +1183,7 @@ void StandardCalculatorViewModel::OnPropertyChanged(String ^ propertyname)
     }
 }
 
+//Make doxygen comment here
 void StandardCalculatorViewModel::SetCalculatorType(ViewMode targetState)
 {
     // Reset error state so that commands caused by the mode change are still
@@ -1201,6 +1211,10 @@ void StandardCalculatorViewModel::SetCalculatorType(ViewMode targetState)
         ResetDisplay();
         SetPrecision(ProgrammerModePrecision);
         break;
+    case ViewMode::Symbolic:
+        IsSymbolic = true;
+        ResetDisplay();
+        SetPrecision(StandardModePrecision);
     }
 }
 
@@ -1367,6 +1381,7 @@ void StandardCalculatorViewModel::SaveEditedCommand(_In_ unsigned int tokenPosit
     }
 }
 
+//May be usefull to include symbolic logic here
 void StandardCalculatorViewModel::Recalculate(bool fromHistory)
 {
     // Recalculate

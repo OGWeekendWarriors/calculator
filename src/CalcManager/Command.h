@@ -196,6 +196,7 @@ namespace CalculationManager
         CommandATANH = 208,
 
         ModeProgrammer = 209,
+        ModeSymbolic = 210,
         CommandHex = 313,
         CommandDec = 314,
         CommandOct = 315,

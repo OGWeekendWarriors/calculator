@@ -109,6 +109,7 @@ bool IsGraphingModeEnabled()
 }
 
 // The order of items in this list determines the order of items in the menu.
+//Make doxygen comment here
 static const list<NavCategoryInitializer> s_categoryManifest = [] {
     auto res = list<NavCategoryInitializer>{ NavCategoryInitializer{ ViewMode::Standard,
                                                                      STANDARD_ID,

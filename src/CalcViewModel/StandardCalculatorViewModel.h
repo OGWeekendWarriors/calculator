@@ -142,6 +142,7 @@ namespace CalculatorApp
                         {
                             IsScientific = false;
                             IsProgrammer = false;
+                            IsSymbolic = false;
                         }
                         RaisePropertyChanged(L"IsStandard");
                     }
@@ -163,6 +164,7 @@ namespace CalculatorApp
                         {
                             IsStandard = false;
                             IsProgrammer = false;
+                            IsSymbolic = false;
                         }
                         RaisePropertyChanged(L"IsScientific");
                     }
@@ -190,8 +192,31 @@ namespace CalculatorApp
                         {
                             IsStandard = false;
                             IsScientific = false;
+                            IsSymbolic = false;
                         }
                         RaisePropertyChanged(L"IsProgrammer");
+                    }
+                }
+            }
+            //Make doxygen comment here
+            property bool IsSymbolic
+            {
+                bool get()
+                {
+                    return m_isSymbolic;
+                }
+                void set(bool value)
+                {
+                    if (m_isSymbolic != value)
+                    {
+                        m_isSymbolic = value;
+                        if (value)
+                        {
+                            IsStandard = false;
+                            IsScientific = false;
+                            IsProgrammer = false;
+                        }
+                        RaisePropertyChanged(L"IsSymbolic");
                     }
                 }
             }
@@ -334,6 +359,7 @@ namespace CalculatorApp
             bool m_isStandard;
             bool m_isScientific;
             bool m_isProgrammer;
+            bool m_isSymbolic;
             bool m_isBitFlipChecked;
             bool m_isRtlLanguage;
             bool m_operandUpdated;
