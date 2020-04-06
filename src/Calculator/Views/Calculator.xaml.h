@@ -59,6 +59,7 @@ public
         DEPENDENCY_PROPERTY_WITH_DEFAULT_AND_CALLBACK(bool, IsStandard, false);
         DEPENDENCY_PROPERTY_WITH_DEFAULT_AND_CALLBACK(bool, IsScientific, false);
         DEPENDENCY_PROPERTY_WITH_DEFAULT_AND_CALLBACK(bool, IsProgrammer, false);
+        DEPENDENCY_PROPERTY_WITH_DEFAULT_AND_CALLBACK(bool, IsSymbolic, false);   //this throws a linker error when used; maybe due to the fact that there is no Symbolic Window yet...?
         DEPENDENCY_PROPERTY_WITH_DEFAULT_AND_CALLBACK(bool, IsAlwaysOnTop, false);
 
         COMMAND_FOR_METHOD(HistoryButtonPressed, Calculator::ToggleHistoryFlyout);
@@ -89,6 +90,7 @@ public
         void OnIsScientificPropertyChanged(bool oldValue, bool newValue);
         void OnIsProgrammerPropertyChanged(bool oldValue, bool newValue);
         void OnIsStandardPropertyChanged(bool oldValue, bool newValue);
+        void OnIsSymbolicPropertyChanged(bool oldValue, bool newValue);
         void OnIsAlwaysOnTopPropertyChanged(bool oldValue, bool newValue);
         void OnIsInErrorPropertyChanged();
         void OnCalcPropertyChanged(_In_ Platform::Object ^ sender, _In_ Windows::UI::Xaml::Data::PropertyChangedEventArgs ^ e);
@@ -98,6 +100,7 @@ public
         void OnDisplayVisualStateCompleted(_In_ Platform::Object ^ sender, _In_ Platform::Object ^ e);
         void EnsureScientific();
         void EnsureProgrammer();
+        void EnsureSymbolic();
         void SetFontSizeResources();
         Platform::String ^ GetCurrentLayoutState();
         void Calculator_SizeChanged(Object ^ sender, Windows::UI::Xaml::SizeChangedEventArgs ^ e);

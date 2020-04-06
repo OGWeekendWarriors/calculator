@@ -121,6 +121,7 @@ void MainPage::WindowSizeChanged(_In_ Platform::Object ^ /*sender*/, _In_ Window
     UpdateViewState();
 }
 
+//doxygen comment here
 void MainPage::OnAppPropertyChanged(_In_ Platform::Object ^ sender, _In_ Windows::UI::Xaml::Data::PropertyChangedEventArgs ^ e)
 {
     String ^ propertyName = e->PropertyName;
@@ -155,6 +156,16 @@ void MainPage::OnAppPropertyChanged(_In_ Platform::Object ^ sender, _In_ Windows
             m_model->CalculatorViewModel->HistoryVM->AreHistoryShortcutsEnabled = false;
             EnsureCalculator();
             if (m_model->PreviousMode != ViewMode::Programmer)
+            {
+                m_calculator->AnimateCalculator(NavCategory::IsConverterViewMode(previousMode));
+            }
+        }
+        if (newValue == ViewMode::Symbolic)
+        {
+            m_model->CalculatorViewModel->AreHistoryShortcutsEnabled = false;
+            m_model->CalculatorViewModel->HistoryVM->AreHistoryShortcutsEnabled = false;
+            EnsureCalculator();
+            if (m_model->PreviousMode != ViewMode::Symbolic)
             {
                 m_calculator->AnimateCalculator(NavCategory::IsConverterViewMode(previousMode));
             }
@@ -305,6 +316,7 @@ void MainPage::SetDefaultFocus()
     }
 }
 
+//doxygen comment here
 void MainPage::EnsureCalculator()
 {
     if (!m_calculator)
@@ -322,6 +334,9 @@ void MainPage::EnsureCalculator()
         Binding ^ isProgramerBinding = ref new Binding();
         isProgramerBinding->Path = ref new PropertyPath(L"IsProgrammer");
         m_calculator->SetBinding(m_calculator->IsProgrammerProperty, isProgramerBinding);
+        Binding ^ isSymbolicBinding = ref new Binding();
+        isSymbolicBinding->Path = ref new PropertyPath(L"IsSymbolic");
+        m_calculator->SetBinding(m_calculator->IsSymbolicProperty, isSymbolicBinding);  //This needs DEPENDENCY_PROPERTY_WITH_DEFAULT_AND_CALLBACK(bool, IsSymbolic, false) in Calculator.xaml.h to work
         Binding ^ isAlwaysOnTopBinding = ref new Binding();
         isAlwaysOnTopBinding->Path = ref new PropertyPath(L"IsAlwaysOnTop");
         m_calculator->SetBinding(m_calculator->IsAlwaysOnTopProperty, isAlwaysOnTopBinding);

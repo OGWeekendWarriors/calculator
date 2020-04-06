@@ -279,6 +279,18 @@ void Calculator::OnIsProgrammerPropertyChanged(bool /*oldValue*/, bool newValue)
     UpdatePanelViewState();
 }
 
+//write doxygen comment here
+void Calculator::OnIsSymbolicPropertyChanged(bool /*oldValue*/, bool newValue)
+{
+    if (newValue)
+    {
+        EnsureSymbolic();
+    }
+
+    UpdateViewState();
+    UpdatePanelViewState();
+}
+
 void Calculator::OnIsAlwaysOnTopPropertyChanged(bool /*oldValue*/, bool newValue)
 {
     if (newValue)
@@ -372,6 +384,12 @@ void Calculator::EnsureProgrammer()
     ProgrammerOperators->SetRadixButton(Model->CurrentRadixType);
 }
 
+//write doxygen comment here
+void Calculator::EnsureSymbolic()
+{
+    //NOOP for now
+    //Will need to add other Ensure methods to make sure that the correct Symbolic stuff is loaded
+}
 void Calculator::OnCalcPropertyChanged(_In_ Object ^ sender, _In_ PropertyChangedEventArgs ^ e)
 {
     String ^ prop = e->PropertyName;
