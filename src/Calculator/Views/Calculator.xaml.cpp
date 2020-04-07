@@ -280,7 +280,10 @@ void Calculator::OnIsProgrammerPropertyChanged(bool /*oldValue*/, bool newValue)
     UpdatePanelViewState();
 }
 
-//write doxygen comment here
+//Made doxygen comment here
+///<summary>
+///Ensures that the calculator is ready for symbolic operations
+///</summary>
 void Calculator::OnIsSymbolicPropertyChanged(bool /*oldValue*/, bool newValue)
 {
     if (newValue)
@@ -385,7 +388,10 @@ void Calculator::EnsureProgrammer()
     ProgrammerOperators->SetRadixButton(Model->CurrentRadixType);
 }
 
-//write doxygen comment here
+//Made doxygen comment here
+///<summary>
+///Makes sure the GUI is ready for symbolic operations by checking if symbolic resources are loaded
+///</summary>
 void Calculator::EnsureSymbolic()
 {
     //NOOP for now

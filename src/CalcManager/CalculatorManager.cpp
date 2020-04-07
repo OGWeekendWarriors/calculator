@@ -122,7 +122,7 @@ namespace CalculationManager
         m_displayCallback->OnNoRightParenAdded();
     }
 
-    //doxygen comment here
+    //made an edit to the code, but method appears to have a doxygen comment already
     /// <summary>
     /// Reset CalculatorManager.
     /// Set the mode to the standard calculator
@@ -215,7 +215,10 @@ namespace CalculationManager
         m_currentCalculatorEngine->ChangePrecision(static_cast<int>(CalculatorPrecision::ProgrammerModePrecision));
     }
 
-    //doxygen comment here
+    //Made doxygen comment here
+    /// <summary>
+    /// Change the current calculator engine to symbolic calculator engine.
+    /// </summary>
     void CalculatorManager::SetSymbolicMode()
     {
         if (!m_symbolicCalculatorEngine)
@@ -232,7 +235,7 @@ namespace CalculationManager
         m_pHistory = m_pStdHistory.get();
     }
 
-    //add doxygem comment here
+    // made an edit to the code, but method appears to have a doxygen comment already
     /// <summary>
     /// Send command to the Calc Engine
     /// Cast Command Enum to OpCode.

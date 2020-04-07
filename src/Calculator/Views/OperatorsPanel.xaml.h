@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
 #pragma once
@@ -8,6 +8,7 @@
 #include "Views/CalculatorScientificOperators.xaml.h"
 #include "Views/CalculatorProgrammerBitFlipPanel.xaml.h"
 #include "Views/CalculatorProgrammerRadixOperators.xaml.h"
+#include "Views/CalculatorSymbolicOperators.xaml.h"
 
 namespace CalculatorApp
 {
