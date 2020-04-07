@@ -123,7 +123,7 @@ namespace CalculationManager
     }
 
     //this method was already commented, I merely reformatted it to be in a doxygen format for multiple lines
-    /** <summary>
+    /**
      * Reset CalculatorManager.
      * Set the mode to the standard calculator
      * Set the degree mode as regular degree (as oppose to Rad or Grad)
