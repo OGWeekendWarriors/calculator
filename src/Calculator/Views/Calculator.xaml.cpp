@@ -39,6 +39,7 @@ using namespace Windows::UI::ViewManagement;
 DEPENDENCY_PROPERTY_INITIALIZATION(Calculator, IsStandard);
 DEPENDENCY_PROPERTY_INITIALIZATION(Calculator, IsScientific);
 DEPENDENCY_PROPERTY_INITIALIZATION(Calculator, IsProgrammer);
+//DEPENDENCY_PROPERTY_INITIALIZATION(Calculator, IsSymbolic);   //requires a definition in Calculator
 DEPENDENCY_PROPERTY_INITIALIZATION(Calculator, IsAlwaysOnTop);
 
 Calculator::Calculator()

@@ -334,9 +334,9 @@ void MainPage::EnsureCalculator()
         Binding ^ isProgramerBinding = ref new Binding();
         isProgramerBinding->Path = ref new PropertyPath(L"IsProgrammer");
         m_calculator->SetBinding(m_calculator->IsProgrammerProperty, isProgramerBinding);
-        Binding ^ isSymbolicBinding = ref new Binding();
-        isSymbolicBinding->Path = ref new PropertyPath(L"IsSymbolic");
-        m_calculator->SetBinding(m_calculator->IsSymbolicProperty, isSymbolicBinding);  //This needs DEPENDENCY_PROPERTY_WITH_DEFAULT_AND_CALLBACK(bool, IsSymbolic, false) in Calculator.xaml.h to work
+        //Binding ^ isSymbolicBinding = ref new Binding();
+        //isSymbolicBinding->Path = ref new PropertyPath(L"IsSymbolic");
+        //m_calculator->SetBinding(m_calculator->IsSymbolicProperty, isSymbolicBinding);  //This needs DEPENDENCY_PROPERTY_WITH_DEFAULT_AND_CALLBACK(bool, IsSymbolic, false) in Calculator.xaml.h to work
         Binding ^ isAlwaysOnTopBinding = ref new Binding();
         isAlwaysOnTopBinding->Path = ref new PropertyPath(L"IsAlwaysOnTop");
         m_calculator->SetBinding(m_calculator->IsAlwaysOnTopProperty, isAlwaysOnTopBinding);
