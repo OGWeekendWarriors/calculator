@@ -523,6 +523,9 @@
     <Page Include="$(MSBuildThisFileDirectory)DensityStyles\Compact.xaml" />
     <Page Include="Controls\PreviewTagControl.xaml" />
     <Page Include="EquationStylePanelControl.xaml" />
+    <Page Include="Views\CalculatorSymbolicOperators.xaml">
+      <Filter>Views</Filter>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="Resources\en-US\CEngineStrings.resw">

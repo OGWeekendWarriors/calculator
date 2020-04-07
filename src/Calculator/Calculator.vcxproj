@@ -295,6 +295,9 @@
     <ClInclude Include="Views\CalculatorStandardOperators.xaml.h">
       <DependentUpon>Views\CalculatorStandardOperators.xaml</DependentUpon>
     </ClInclude>
+    <ClInclude Include="Views\CalculatorSymbolicOperators.xaml.h">
+      <DependentUpon>Views\CalculatorSymbolicOperators.xaml</DependentUpon>
+    </ClInclude>
     <ClInclude Include="Views\GraphingCalculator\EquationInputArea.xaml.h">
       <DependentUpon>Views\GraphingCalculator\EquationInputArea.xaml</DependentUpon>
     </ClInclude>
@@ -371,6 +374,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\CalculatorStandardOperators.xaml" />
+    <Page Include="Views\CalculatorSymbolicOperators.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\DelighterUnitStyles.xaml" />
     <Page Include="Views\GraphingCalculator\EquationInputArea.xaml" />
     <Page Include="Views\GraphingCalculator\GraphingCalculator.xaml" />
@@ -469,6 +475,9 @@
     </ClCompile>
     <ClCompile Include="Views\CalculatorStandardOperators.xaml.cpp">
       <DependentUpon>Views\CalculatorStandardOperators.xaml</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="Views\CalculatorSymbolicOperators.xaml.cpp">
+      <DependentUpon>Views\CalculatorSymbolicOperators.xaml</DependentUpon>
     </ClCompile>
     <ClCompile Include="Views\GraphingCalculator\EquationInputArea.xaml.cpp">
       <DependentUpon>Views\GraphingCalculator\EquationInputArea.xaml</DependentUpon>
