@@ -601,6 +601,7 @@ bool StandardCalculatorViewModel::IsOperator(Command cmdenum)
     return true;
 }
 
+//doxygen comment here
 //This will probably need to be edited to work with symbolic mode
 void StandardCalculatorViewModel::OnButtonPressed(Object ^ parameter)
 {
@@ -1067,6 +1068,8 @@ void StandardCalculatorViewModel::OnMemoryItemChanged(unsigned int indexOfMemory
     }
 }
 
+//doxygen comment here
+//probably needs to be edited to work with symbolic
 void StandardCalculatorViewModel::OnMemoryItemPressed(Object ^ memoryItemPosition)
 {
     if (MemorizedNumbers && MemorizedNumbers->Size > 0)
@@ -1779,6 +1782,7 @@ NarratorAnnouncement ^ StandardCalculatorViewModel::GetDisplayUpdatedNarratorAnn
     return CalculatorAnnouncement::GetDisplayUpdatedAnnouncement(announcement);
 }
 
+//doxygen comment here
 ViewMode StandardCalculatorViewModel::GetCalculatorMode()
 {
     if (IsStandard)
@@ -1788,6 +1792,10 @@ ViewMode StandardCalculatorViewModel::GetCalculatorMode()
     else if (IsScientific)
     {
         return ViewMode::Scientific;
+    }
+    else if (IsSymbolic)
+    {
+        return ViewMode::Symbolic;
     }
     return ViewMode::Programmer;
 }

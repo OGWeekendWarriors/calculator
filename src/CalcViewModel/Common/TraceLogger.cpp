@@ -258,9 +258,10 @@ namespace CalculatorApp
 
     void TraceLogger::UpdateButtonUsage(NumbersAndOperatorsEnum button, ViewMode mode)
     {
-        // IsProgrammerMode, IsScientificMode, IsStandardMode and None are not actual buttons, so ignore them
+        //doxygen comment here
+        // IsProgrammerMode, IsScientificMode, IsStandardMode, IsSymbolicMode and None are not actual buttons, so ignore them
         if (button == NumbersAndOperatorsEnum::IsProgrammerMode || button == NumbersAndOperatorsEnum::IsScientificMode
-            || button == NumbersAndOperatorsEnum::IsStandardMode || button == NumbersAndOperatorsEnum::None)
+            || button == NumbersAndOperatorsEnum::IsStandardMode || button == NumbersAndOperatorsEnum::IsSymbolicMode || button == NumbersAndOperatorsEnum::None)
         {
             return;
         }
