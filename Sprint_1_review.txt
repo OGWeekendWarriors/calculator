@@ -1,0 +1,13 @@
+Sprint 1 review meeting
+Velocity: 2pts
+Jared-
+	Completed Feature 1, User story A, Task002; Made the symbolic tab in the navigation pane; the pane sends the user to a blank calculator window. Only issue is that the glyph for the pane is not recognized.
+	Newly Assigned to Feature 6, User story A, Task001.
+Austin-
+	Analysed the projects in the calculator solution and found that CalcEngine.h, RatPack.h, CalculatorManager.h are the main files/objects that handle the calculations.
+Nate-
+	Researching reference code with trigonometric derivaitons; saved examples of code to implement the derivation in calculator.
+Nico-
+	Searched for libraries that implemented algebra simplification; found one and is currently attempting to make work with the solution.
+Josh-
+	Created class; in the process of integral implementation.
