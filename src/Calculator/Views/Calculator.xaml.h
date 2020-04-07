@@ -59,7 +59,7 @@ public
         DEPENDENCY_PROPERTY_WITH_DEFAULT_AND_CALLBACK(bool, IsStandard, false);
         DEPENDENCY_PROPERTY_WITH_DEFAULT_AND_CALLBACK(bool, IsScientific, false);
         DEPENDENCY_PROPERTY_WITH_DEFAULT_AND_CALLBACK(bool, IsProgrammer, false);
-        //DEPENDENCY_PROPERTY_WITH_DEFAULT_AND_CALLBACK(bool, IsSymbolic, false);   //this throws a linker error when used; maybe due to the fact that there is no Symbolic Window yet...?
+        DEPENDENCY_PROPERTY_WITH_DEFAULT_AND_CALLBACK(bool, IsSymbolic, false);   //this throws a linker error when used; maybe due to the fact that there is no Symbolic Window yet...?
         DEPENDENCY_PROPERTY_WITH_DEFAULT_AND_CALLBACK(bool, IsAlwaysOnTop, false);
 
         COMMAND_FOR_METHOD(HistoryButtonPressed, Calculator::ToggleHistoryFlyout);
