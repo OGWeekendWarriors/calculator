@@ -108,8 +108,13 @@ bool IsGraphingModeEnabled()
     return _isGraphingModeEnabledCached->Value;
 }
 
-// The order of items in this list determines the order of items in the menu.
-//Make doxygen comment here
+//made doxygen comment
+/**
+ *The following list creates the entries in the navigation panel.
+ *The order of the items in the navigation panel is determined by the order of this list.
+ *It is important to note that nameKey (the second L"" entry) DOES NOT name the navigation pane;
+ *you must edit the Resource.resw for a language with an entry for the new entry in order to have the pane named.
+ */
 static const list<NavCategoryInitializer> s_categoryManifest = [] {
     auto res = list<NavCategoryInitializer>{ NavCategoryInitializer{ ViewMode::Standard,
                                                                      STANDARD_ID,

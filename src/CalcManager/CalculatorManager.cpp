@@ -122,14 +122,14 @@ namespace CalculationManager
         m_displayCallback->OnNoRightParenAdded();
     }
 
-    //made an edit to the code, but method appears to have a doxygen comment already
-    /// <summary>
-    /// Reset CalculatorManager.
-    /// Set the mode to the standard calculator
-    /// Set the degree mode as regular degree (as oppose to Rad or Grad)
-    /// Clear all the entries and memories
-    /// Clear Memory if clearMemory parameter is true.(Default value is true)
-    /// </summary>
+    //this method was already commented, I merely reformatted it to be in a doxygen format for multiple lines
+    /** <summary>
+     * Reset CalculatorManager.
+     * Set the mode to the standard calculator
+     * Set the degree mode as regular degree (as oppose to Rad or Grad)
+     * Clear all the entries and memories
+     * Clear Memory if clearMemory parameter is true.(Default value is true)
+     */
     void CalculatorManager::Reset(bool clearMemory /* = true*/)
     {
         m_savedCommands.clear();
@@ -216,9 +216,9 @@ namespace CalculationManager
     }
 
     //Made doxygen comment here
-    /// <summary>
+    ///
     /// Change the current calculator engine to symbolic calculator engine.
-    /// </summary>
+    ///
     void CalculatorManager::SetSymbolicMode()
     {
         if (!m_symbolicCalculatorEngine)

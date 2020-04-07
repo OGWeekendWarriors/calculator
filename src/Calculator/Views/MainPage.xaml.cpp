@@ -122,9 +122,9 @@ void MainPage::WindowSizeChanged(_In_ Platform::Object ^ /*sender*/, _In_ Window
 }
 
 //made doxygen comment here
-///<summary>
+///
 ///Every time a property of the code is changed, this method will fire and check what changed to take the approprate action
-///</summary>
+///
 void MainPage::OnAppPropertyChanged(_In_ Platform::Object ^ sender, _In_ Windows::UI::Xaml::Data::PropertyChangedEventArgs ^ e)
 {
     String ^ propertyName = e->PropertyName;
@@ -320,9 +320,9 @@ void MainPage::SetDefaultFocus()
 }
 
 //made doxygen comment here
-///<sumary>
+///
 ///Binds the xaml code to the calculator object; this enables the DEPENDENCY_PROPERTY_WITH_DEFAULT_AND_CALLBACK(bool, property, false) in Calculator.xaml.h to be used
-///</summary>
+///
 void MainPage::EnsureCalculator()
 {
     if (!m_calculator)

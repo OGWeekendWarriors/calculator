@@ -199,6 +199,9 @@ namespace CalculatorApp
                 }
             }
             //Make doxygen comment here
+            ///
+            ///Symbolic calculator property that is true only when the symbolic calculator window is open or is opening
+            ///
             property bool IsSymbolic
             {
                 bool get()

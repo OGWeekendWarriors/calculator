@@ -602,7 +602,7 @@ bool StandardCalculatorViewModel::IsOperator(Command cmdenum)
 }
 
 //doxygen comment here
-//This will probably need to be edited to work with symbolic mode
+//This will probably need to be edited to work with symbolic mode after a GUI is created
 void StandardCalculatorViewModel::OnButtonPressed(Object ^ parameter)
 {
     m_feedbackForButtonPress = CalculatorButtonPressedEventArgs::GetAuditoryFeedbackFromCommandParameter(parameter);
@@ -1069,7 +1069,7 @@ void StandardCalculatorViewModel::OnMemoryItemChanged(unsigned int indexOfMemory
 }
 
 //doxygen comment here
-//probably needs to be edited to work with symbolic
+// This will probably need to be edited to work with symbolic mode after a GUI is created
 void StandardCalculatorViewModel::OnMemoryItemPressed(Object ^ memoryItemPosition)
 {
     if (MemorizedNumbers && MemorizedNumbers->Size > 0)
@@ -1186,7 +1186,11 @@ void StandardCalculatorViewModel::OnPropertyChanged(String ^ propertyname)
     }
 }
 
-//Make doxygen comment here
+//Made doxygen comment
+/**
+ *Sets the calculator type by having the correct property set to true.
+ *This method performs some preliminary work like reseting the display and setting the precision.
+ */
 void StandardCalculatorViewModel::SetCalculatorType(ViewMode targetState)
 {
     // Reset error state so that commands caused by the mode change are still
@@ -1782,7 +1786,10 @@ NarratorAnnouncement ^ StandardCalculatorViewModel::GetDisplayUpdatedNarratorAnn
     return CalculatorAnnouncement::GetDisplayUpdatedAnnouncement(announcement);
 }
 
-//doxygen comment here
+//made doxygen comment
+///
+/// returns the ViewMode of the currently true property (the currently open calculator)
+///
 ViewMode StandardCalculatorViewModel::GetCalculatorMode()
 {
     if (IsStandard)
