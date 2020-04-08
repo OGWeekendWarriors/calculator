@@ -121,6 +121,10 @@ void MainPage::WindowSizeChanged(_In_ Platform::Object ^ /*sender*/, _In_ Window
     UpdateViewState();
 }
 
+//made doxygen comment here
+///
+///Every time a property of the code is changed, this method will fire and check what changed to take the approprate action
+///
 void MainPage::OnAppPropertyChanged(_In_ Platform::Object ^ sender, _In_ Windows::UI::Xaml::Data::PropertyChangedEventArgs ^ e)
 {
     String ^ propertyName = e->PropertyName;
@@ -155,6 +159,16 @@ void MainPage::OnAppPropertyChanged(_In_ Platform::Object ^ sender, _In_ Windows
             m_model->CalculatorViewModel->HistoryVM->AreHistoryShortcutsEnabled = false;
             EnsureCalculator();
             if (m_model->PreviousMode != ViewMode::Programmer)
+            {
+                m_calculator->AnimateCalculator(NavCategory::IsConverterViewMode(previousMode));
+            }
+        }
+        if (newValue == ViewMode::Symbolic)
+        {
+            m_model->CalculatorViewModel->AreHistoryShortcutsEnabled = false;
+            m_model->CalculatorViewModel->HistoryVM->AreHistoryShortcutsEnabled = false;
+            EnsureCalculator();
+            if (m_model->PreviousMode != ViewMode::Symbolic)
             {
                 m_calculator->AnimateCalculator(NavCategory::IsConverterViewMode(previousMode));
             }
@@ -305,6 +319,10 @@ void MainPage::SetDefaultFocus()
     }
 }
 
+//made doxygen comment here
+///
+///Binds the xaml code to the calculator object; this enables the DEPENDENCY_PROPERTY_WITH_DEFAULT_AND_CALLBACK(bool, property, false) in Calculator.xaml.h to be used
+///
 void MainPage::EnsureCalculator()
 {
     if (!m_calculator)
@@ -322,6 +340,9 @@ void MainPage::EnsureCalculator()
         Binding ^ isProgramerBinding = ref new Binding();
         isProgramerBinding->Path = ref new PropertyPath(L"IsProgrammer");
         m_calculator->SetBinding(m_calculator->IsProgrammerProperty, isProgramerBinding);
+        Binding ^ isSymbolicBinding = ref new Binding();
+        isSymbolicBinding->Path = ref new PropertyPath(L"IsSymbolic");
+        m_calculator->SetBinding(m_calculator->IsSymbolicProperty, isSymbolicBinding);
         Binding ^ isAlwaysOnTopBinding = ref new Binding();
         isAlwaysOnTopBinding->Path = ref new PropertyPath(L"IsAlwaysOnTop");
         m_calculator->SetBinding(m_calculator->IsAlwaysOnTopProperty, isAlwaysOnTopBinding);
@@ -563,7 +584,7 @@ void MainPage::SetHeaderAutomationName()
         {
             full = resProvider->GetResourceString(L"HeaderAutomationName_Converter");
         }
-        name = LocalizationStringUtil::GetLocalizedString(full, m_model->CategoryName);
+        name = LocalizationStringUtil::GetLocalizedString(full, m_model->CategoryName); //Not getting an expected value of Symbolic Calculator Mode when its navigation button is pressed
     }
 
     AutomationProperties::SetName(Header, name);

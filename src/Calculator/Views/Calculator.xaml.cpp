@@ -39,6 +39,7 @@ using namespace Windows::UI::ViewManagement;
 DEPENDENCY_PROPERTY_INITIALIZATION(Calculator, IsStandard);
 DEPENDENCY_PROPERTY_INITIALIZATION(Calculator, IsScientific);
 DEPENDENCY_PROPERTY_INITIALIZATION(Calculator, IsProgrammer);
+DEPENDENCY_PROPERTY_INITIALIZATION(Calculator, IsSymbolic);   //requires a definition in Calculator
 DEPENDENCY_PROPERTY_INITIALIZATION(Calculator, IsAlwaysOnTop);
 
 Calculator::Calculator()
@@ -279,6 +280,21 @@ void Calculator::OnIsProgrammerPropertyChanged(bool /*oldValue*/, bool newValue)
     UpdatePanelViewState();
 }
 
+//Made doxygen comment here
+///
+///Ensures that the calculator is ready for symbolic operations
+///
+void Calculator::OnIsSymbolicPropertyChanged(bool /*oldValue*/, bool newValue)
+{
+    if (newValue)
+    {
+        EnsureSymbolic();
+    }
+
+    UpdateViewState();
+    UpdatePanelViewState();
+}
+
 void Calculator::OnIsAlwaysOnTopPropertyChanged(bool /*oldValue*/, bool newValue)
 {
     if (newValue)
@@ -372,6 +388,15 @@ void Calculator::EnsureProgrammer()
     ProgrammerOperators->SetRadixButton(Model->CurrentRadixType);
 }
 
+//Made doxygen comment here
+///
+///Makes sure the GUI is ready for symbolic operations by checking if symbolic resources are loaded
+///
+void Calculator::EnsureSymbolic()
+{
+    //NOOP for now
+    //Will need to add other Ensure methods to make sure that the correct Symbolic stuff is loaded
+}
 void Calculator::OnCalcPropertyChanged(_In_ Object ^ sender, _In_ PropertyChangedEventArgs ^ e)
 {
     String ^ prop = e->PropertyName;

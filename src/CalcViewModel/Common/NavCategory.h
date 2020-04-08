@@ -24,6 +24,7 @@ namespace CalculatorApp
         // Don't change the order of these enums
         // and definitely don't use int arithmetic
         // to change modes.
+        //Make doxygem comment here
     public
         enum class ViewMode
         {
@@ -45,7 +46,8 @@ namespace CalculatorApp
             Pressure = 14,
             Angle = 15,
             Currency = 16,
-            Graphing = 17
+            Graphing = 17,
+            Symbolic = 18
         };
 
     public
