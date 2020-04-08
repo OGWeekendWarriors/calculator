@@ -37,6 +37,7 @@ namespace
     StringReference IsStandardPropertyName(L"IsStandard");
     StringReference IsScientificPropertyName(L"IsScientific");
     StringReference IsProgrammerPropertyName(L"IsProgrammer");
+    StringReference IsSymbolicPropertyName(L"IsSymbolic");
     StringReference IsAlwaysOnTopPropertyName(L"IsAlwaysOnTop");
     StringReference DisplayValuePropertyName(L"DisplayValue");
     StringReference CalculationResultAutomationNamePropertyName(L"CalculationResultAutomationName");
@@ -600,6 +601,8 @@ bool StandardCalculatorViewModel::IsOperator(Command cmdenum)
     return true;
 }
 
+//doxygen comment here
+//This will probably need to be edited to work with symbolic mode after a GUI is created
 void StandardCalculatorViewModel::OnButtonPressed(Object ^ parameter)
 {
     m_feedbackForButtonPress = CalculatorButtonPressedEventArgs::GetAuditoryFeedbackFromCommandParameter(parameter);
@@ -1065,6 +1068,8 @@ void StandardCalculatorViewModel::OnMemoryItemChanged(unsigned int indexOfMemory
     }
 }
 
+//doxygen comment here
+// This will probably need to be edited to work with symbolic mode after a GUI is created
 void StandardCalculatorViewModel::OnMemoryItemPressed(Object ^ memoryItemPosition)
 {
     if (MemorizedNumbers && MemorizedNumbers->Size > 0)
@@ -1162,6 +1167,13 @@ void StandardCalculatorViewModel::OnPropertyChanged(String ^ propertyname)
             OnButtonPressed(NumbersAndOperatorsEnum::IsStandardMode);
         }
     }
+    else if (propertyname == IsSymbolicPropertyName)
+    {
+        if (IsSymbolic)
+        {
+            OnButtonPressed(NumbersAndOperatorsEnum::IsSymbolicMode);
+        }
+    }
     else if (propertyname == DisplayValuePropertyName)
     {
         RaisePropertyChanged(CalculationResultAutomationNamePropertyName);
@@ -1174,6 +1186,11 @@ void StandardCalculatorViewModel::OnPropertyChanged(String ^ propertyname)
     }
 }
 
+//Made doxygen comment
+/**
+ *Sets the calculator type by having the correct property set to true.
+ *This method performs some preliminary work like reseting the display and setting the precision.
+ */
 void StandardCalculatorViewModel::SetCalculatorType(ViewMode targetState)
 {
     // Reset error state so that commands caused by the mode change are still
@@ -1201,6 +1218,10 @@ void StandardCalculatorViewModel::SetCalculatorType(ViewMode targetState)
         ResetDisplay();
         SetPrecision(ProgrammerModePrecision);
         break;
+    case ViewMode::Symbolic:
+        IsSymbolic = true;
+        ResetDisplay();
+        SetPrecision(StandardModePrecision);
     }
 }
 
@@ -1367,6 +1388,7 @@ void StandardCalculatorViewModel::SaveEditedCommand(_In_ unsigned int tokenPosit
     }
 }
 
+//May be usefull to include symbolic logic here
 void StandardCalculatorViewModel::Recalculate(bool fromHistory)
 {
     // Recalculate
@@ -1764,6 +1786,10 @@ NarratorAnnouncement ^ StandardCalculatorViewModel::GetDisplayUpdatedNarratorAnn
     return CalculatorAnnouncement::GetDisplayUpdatedAnnouncement(announcement);
 }
 
+//made doxygen comment
+///
+/// returns the ViewMode of the currently true property (the currently open calculator)
+///
 ViewMode StandardCalculatorViewModel::GetCalculatorMode()
 {
     if (IsStandard)
@@ -1773,6 +1799,10 @@ ViewMode StandardCalculatorViewModel::GetCalculatorMode()
     else if (IsScientific)
     {
         return ViewMode::Scientific;
+    }
+    else if (IsSymbolic)
+    {
+        return ViewMode::Symbolic;
     }
     return ViewMode::Programmer;
 }

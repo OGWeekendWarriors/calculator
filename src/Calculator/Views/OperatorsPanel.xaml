@@ -25,6 +25,12 @@
                                                 IsEnabled="{x:Bind Model.IsBinaryBitFlippingEnabled, Mode=OneWay}"
                                                 x:Load="False"/>
 
+        <local:CalculatorSymbolicOperators x:Name="SymbolicOperators"
+                                             TabIndex="16"
+                                             Visibility="{x:Bind Model.IsSymbolic, Mode=OneWay}"
+                                             IsEnabled="{x:Bind Model.IsSymbolic, Mode=OneWay}"
+                                             x:Load="False"/>
+
         <local:CalculatorProgrammerRadixOperators x:Name="ProgrammerRadixOperators"
                                                   TabIndex="16"
                                                   Visibility="{x:Bind Model.AreProgrammerRadixOperatorsEnabled, Mode=OneWay}"

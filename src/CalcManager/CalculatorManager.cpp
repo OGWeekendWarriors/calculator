@@ -122,13 +122,14 @@ namespace CalculationManager
         m_displayCallback->OnNoRightParenAdded();
     }
 
-    /// <summary>
-    /// Reset CalculatorManager.
-    /// Set the mode to the standard calculator
-    /// Set the degree mode as regular degree (as oppose to Rad or Grad)
-    /// Clear all the entries and memories
-    /// Clear Memory if clearMemory parameter is true.(Default value is true)
-    /// </summary>
+    //this method was already commented, I merely reformatted it to be in a doxygen format for multiple lines
+    /**
+     * Reset CalculatorManager.
+     * Set the mode to the standard calculator
+     * Set the degree mode as regular degree (as oppose to Rad or Grad)
+     * Clear all the entries and memories
+     * Clear Memory if clearMemory parameter is true.(Default value is true)
+     */
     void CalculatorManager::Reset(bool clearMemory /* = true*/)
     {
         m_savedCommands.clear();
@@ -148,6 +149,10 @@ namespace CalculationManager
         if (m_programmerCalculatorEngine)
         {
             m_programmerCalculatorEngine->ProcessCommand(IDC_CLEAR);
+        }
+        if (m_symbolicCalculatorEngine)
+        {
+            m_symbolicCalculatorEngine->ProcessCommand(IDC_CLEAR);
         }
 
         if (clearMemory)
@@ -210,6 +215,27 @@ namespace CalculationManager
         m_currentCalculatorEngine->ChangePrecision(static_cast<int>(CalculatorPrecision::ProgrammerModePrecision));
     }
 
+    //Made doxygen comment here
+    ///
+    /// Change the current calculator engine to symbolic calculator engine.
+    ///
+    void CalculatorManager::SetSymbolicMode()
+    {
+        if (!m_symbolicCalculatorEngine)
+        {
+            m_symbolicCalculatorEngine =
+                make_unique<CCalcEngine>(false /* Respect Order of Operations */, false /* Set to Integer Mode */, m_resourceProvider, this, m_pStdHistory);
+        }
+
+        m_currentCalculatorEngine = m_symbolicCalculatorEngine.get();
+        m_currentCalculatorEngine->ProcessCommand(IDC_DEC);
+        m_currentCalculatorEngine->ProcessCommand(IDC_CLEAR);
+        m_currentCalculatorEngine->ChangePrecision(static_cast<int>(CalculatorPrecision::StandardModePrecision));
+        UpdateMaxIntDigits();
+        m_pHistory = m_pStdHistory.get();
+    }
+
+    // made an edit to the code, but method appears to have a doxygen comment already
     /// <summary>
     /// Send command to the Calc Engine
     /// Cast Command Enum to OpCode.
@@ -221,7 +247,7 @@ namespace CalculationManager
         // When the expression line is cleared, we save the current state, which includes,
         // primary display, memory, and degree mode
         if (command == Command::CommandCLEAR || command == Command::CommandEQU || command == Command::ModeBasic || command == Command::ModeScientific
-            || command == Command::ModeProgrammer)
+            || command == Command::ModeProgrammer || command == Command::ModeSymbolic)
         {
             switch (command)
             {
@@ -233,6 +259,9 @@ namespace CalculationManager
                 break;
             case Command::ModeProgrammer:
                 this->SetProgrammerMode();
+                break;
+            case Command::ModeSymbolic:
+                this->SetSymbolicMode();
                 break;
             default:
                 m_currentCalculatorEngine->ProcessCommand(static_cast<OpCode>(command));
