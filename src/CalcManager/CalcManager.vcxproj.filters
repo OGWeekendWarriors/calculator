@@ -90,6 +90,7 @@
       <Filter>CEngine</Filter>
     </ClCompile>
     <ClCompile Include="NumberFormattingUtils.cpp" />
+    <ClCompile Include="Algebra.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Command.h" />

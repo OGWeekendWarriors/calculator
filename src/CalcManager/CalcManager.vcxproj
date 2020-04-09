@@ -305,6 +305,7 @@
     <ClInclude Include="UnitConverter.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Algebra.cpp" />
     <ClCompile Include="CalculatorHistory.cpp" />
     <ClCompile Include="CalculatorManager.cpp" />
     <ClCompile Include="CEngine\calc.cpp" />
