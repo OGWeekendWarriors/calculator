@@ -161,5 +161,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="NumberFormattingUtils.h" />
+    <ClInclude Include="Algebra.h" />
   </ItemGroup>
 </Project>
