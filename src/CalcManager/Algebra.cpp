@@ -6,14 +6,15 @@ calculator feature add on to the Microsoft Calculator.
 */
 #include "Algebra.h"
 
-///\return Constructor.
+///\return Constructor once instantiated, will allow access to
+/// any class functions. Every class must have one.
 Algebra::Algebra()
 {
 }
 
 ///\return Since there is no garbage collector for C++, we must
-/// include a destructor for the class. Since no array was used
-/// we dont actually need to delete anything.
+/// include a destructor for the class. Every class with a contructor
+/// must have one.
 Algebra::~Algebra()
 {
 }
@@ -46,10 +47,49 @@ inline wstring Algebra::sTow(string out)
     return r;
 }
 
-///\return This method is used to evaluate an expression by
+///\return This method was created to ensure the expression passed is
+/// correctly formatted. If not, then it returns false and the expression
+/// cannot be used.
+inline bool Algebra::expressionCheck(string expression)
+{
+    /*
+        Allowed expression formats:
+        3(2) == 3*2
+        3x == 3*x
+    */
+    int parenthesis = 0;
+    for (char c : expression)
+    {
+        if (!isdigit(c))
+        {
+            if (c == '(')
+            {
+                parenthesis++;
+                continue;
+            }
+            if (c == ')')
+            {
+                parenthesis--;
+                continue;
+            }
+            if (!c == '+' || !c == '-' || !c == '*' || !c == '+')
+            {
+                return false;
+            }
+        }
+    }
+    if (!parenthesis)
+        return true;
+    else
+        return false;
+}
+
+///\return This method is used to simplify an expression by
 /// multpliying out the terms to get rid of parenthesis and
 /// exponents.
-wstring Algebra::evaluateExpression(wstring exp)
+wstring Algebra::simplifyExpression(wstring exp)
 {
-    
+    string expression = wTos(exp);
+
+    return sTow(expressiom);
 }

@@ -26,7 +26,8 @@ public:
     inline ~Algebra();
     inline string wTos(wstring in);
     inline wstring sTow(string out);
-    inline string evaluateExpression(wstring exp);
+    inline bool expressionCheck(string expression);
+    inline wstring simplifyExpression(wstring exp);
 };
 
 #endif
