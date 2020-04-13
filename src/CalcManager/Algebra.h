@@ -17,11 +17,6 @@ using namespace std;
 
 class Algebra
 {
-private:
-    ///\return The following lets the class have
-    /// the following variables.
-    string in;
-    bool isExpression;
 
 public:
     ///\return The following lets the compiler
@@ -29,9 +24,9 @@ public:
     /// instantiated.
     inline Algebra();
     inline ~Algebra();
-    inline bool expressionCheck(string);
-    inline void expression(string);
-    inline string simplifyExpression();
+    inline string wTos(wstring in);
+    inline wstring sTow(string out);
+    inline string evaluateExpression(wstring exp);
 };
 
 #endif
