@@ -142,7 +142,7 @@ static const list<NavCategoryInitializer> s_categoryManifest = [] {
                                                                      SYMBOLIC_ID,
                                                                      L"Symbolic",
                                                                      L"SymbolicMode",   //Note: if you want the navigation pane to have Symbolic on the tab, you need to go into the resource folder for a language and add a symbolic section there
-                                                                     L"\u222B", //This is the glyph for the integral symbol; however, it is not recognized as a glyph for whatever reason
+                                                                     L"\uF19B", //This is the glyph for the symbolic symbol in the font asset file
                                                                      CategoryGroupType::Calculator,
                                                                      MyVirtualKey::None,
                                                                      nullptr,
