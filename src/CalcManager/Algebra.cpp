@@ -5,6 +5,7 @@ functionality for any algebraic operations for a symbolic
 calculator feature add on to the Microsoft Calculator.
 */
 #include "Algebra.h"
+#include <stack>
 
 using namespace std;
 
@@ -36,8 +37,36 @@ string Algebra::simplifyExpression()
 /// then simplify.
 inline int Algebra::evaluate(string tokens)
 {
-    return 0;
-}
+    int i;
+
+    stack<int> values;
+
+    stack<char> ops;
+
+    for (i = 0; i < tokens.length(); i++)
+    {
+        if (tokens[i] == ' ')
+            continue;
+
+        else if (tokens[i] == '(')
+        {
+            ops.push(tokens[i]);
+        }
+
+        else if (isdigit(tokens[i]))
+        {
+            int val = 0;
+
+            while (i < tokens.length() && isdigit(tokens[i]))
+            {
+                val = (val * 10) + (tokens[i] - '0');
+                i++;
+            }
+
+            values.push(val);
+        }
+        else if () {
+    }
 
 ///\return This method applies the operation on the expression
 /// based off of a simple case switch. This is used for
