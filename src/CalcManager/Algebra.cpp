@@ -12,7 +12,14 @@ using namespace std;
 ///\return Constructor will instantiate the expression variable.
 Algebra::Algebra(string expression)
 {
-    this->expression = expression;
+    if (expression[1] != ' ')
+    {
+       this-> expression = format(expression);
+    }
+    else
+    {
+       this->expression = expression;
+    }
 }
 
 ///\return Since there is no garbage collector for C++, we must
@@ -27,9 +34,8 @@ Algebra::~Algebra()
 /// exponents.
 string Algebra::simplifyExpression()
 {
-    string result;
-
-    return result;
+    int result = evaluate(expression);
+    return to_string(result);
 }
 
 ///\return This method ensures that the expression has spaces
@@ -90,7 +96,7 @@ inline int Algebra::evaluate(string tokens)
         }
         else if (tokens[i] == ')')
         {
-            while(!ops.empty() && ops.top() != '(')
+            while (!ops.empty() && ops.top() != '(')
             {
                 int val2 = values.top();
                 values.pop();
@@ -142,7 +148,7 @@ inline int Algebra::evaluate(string tokens)
     }
 
     return values.top();
-    }
+}
 
 ///\return This method applies the operation on the expression
 /// based off of a simple case switch. This is used for
