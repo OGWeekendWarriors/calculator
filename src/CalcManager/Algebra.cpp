@@ -65,7 +65,25 @@ inline int Algebra::evaluate(string tokens)
 
             values.push(val);
         }
-        else if () {
+        else if (tokens[i] == ')')
+        {
+            while(!ops.empty() && ops.top() != '(')
+            {
+                int val2 = values.top();
+                values.pop();
+
+                int val1 = values.top();
+                values.pop();
+
+                char op = ops.top();
+                ops.pop();
+
+                values.push(applyOp(val1, val2, op));
+            }
+
+            if (!ops.empty())
+                ops.pop();
+        }
     }
 
 ///\return This method applies the operation on the expression
