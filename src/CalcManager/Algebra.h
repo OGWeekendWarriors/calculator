@@ -17,17 +17,22 @@ using namespace std;
 
 class Algebra
 {
+private:
+    ///\return Each Algebra object will hold a
+    /// a string continaing the information of
+    /// the input given from a parent class.
+    string expression;
 
 public:
     ///\return The following lets the compiler
     /// know that the following methods will be
     /// instantiated.
-    inline Algebra();
-    inline ~Algebra();
-    inline string wTos(wstring in);
-    inline wstring sTow(string out);
-    inline bool expressionCheck(string expression);
-    inline wstring simplifyExpression(wstring exp);
+    inline Algebra(string expression);
+    inline virtual ~Algebra();
+    inline string simplifyExpression();
+    inline int evaluate(string tokens);
+    inline int applyOp(int a, int b, char op);
+    inline int precedence(char op);
 };
 
 #endif
