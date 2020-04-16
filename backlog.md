@@ -3,7 +3,8 @@
 ## User story A: As a calculator user, I want a symbolic calculator option, so that my results are in a familiar symbolic expression.
 	Status: Assigned Austin Sprint 2 3pts P0 Priority 1: Task 001 Find out how Calculator stores and passes user data from its various calculator options.
     Status: Completed by Jared Sprint 1 2pts P0 Priority 1: Task 002 Find out how to add the new symbolic calculator option to Calculator’s settings.
-    Status: Assigned Austin Sprint 2 5pts P0 Priority 1: Task 003 Create the symbolic calculator window.
+    Status: Assigned Austin Sprint 2 5pts P0 Priority 1: Task 003 Create the symbolic calculator window.  
+    Status: Assigned ___ Sprint _ 5pts P0 Priority _: Task 004 Create a symbolic parent class which will store the current symbolic mode and fetch the global equation string.
 ## User story B: As a calculator user, I want a symbolic calculator option, so I can solve algebraic expressions.
     Status: Assigned Nico Sprint 2 8pts P0 Priority 2: Task 001 Create an algebra class that can simplify expressions.
 	Status: Assigned ___ Sprint _ 5pts P0 Priority _: Task 002 Create an algebra class that can solve for a single variable.
