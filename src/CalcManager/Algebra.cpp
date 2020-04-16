@@ -84,6 +84,41 @@ inline int Algebra::evaluate(string tokens)
             if (!ops.empty())
                 ops.pop();
         }
+        else
+        {
+            while (!ops.empty() && precedence(ops.top()) >= precedence(tokens[i]))
+            {
+                int val2 = values.top();
+                values.pop();
+
+                int val1 = values.top();
+                values.pop();
+
+                char op = ops.top();
+                ops.pop();
+
+                values.push(applyOp(val1, val2, op));
+            }
+
+            ops.push(tokens[i]);
+        }
+    }
+
+    while (!ops.empty())
+    {
+        int val2 = values.top();
+        values.pop();
+
+        int val1 = values.top();
+        values.pop();
+
+        char op = ops.top();
+        ops.pop();
+
+        values.push(applyOp(val1, val2, op));
+    }
+
+    return values.top();
     }
 
 ///\return This method applies the operation on the expression
