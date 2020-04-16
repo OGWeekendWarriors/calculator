@@ -457,9 +457,6 @@
                     </VisualState.Setters>
                     <Storyboard Completed="OnModeVisualStateCompleted"/>
                 </VisualState>
-                <VisualState x:Name="Symbolic">
-                    <Storyboard Completed="OnModeVisualStateCompleted"/>
-                </VisualState>
             </VisualStateGroup>
             <!-- Layout specific -->
             <VisualStateGroup x:Name="LayoutVisualStates" CurrentStateChanged="OnVisualStateChanged">
