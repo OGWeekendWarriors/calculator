@@ -32,6 +32,29 @@ string Algebra::simplifyExpression()
     return result;
 }
 
+///\return This method ensures that the expression has spaces
+/// in between each token. Due to how this class parses and
+/// simplifies things, it is best to first format before
+/// continuing.
+string Algebra::format(string expression)
+{
+    bool space = false;
+    for (int x = 0; x < expression.length(); x++)
+    {
+        if (space)
+        {
+            expression.insert(x, " ");
+            space = false;
+        }
+        else
+        {
+            space = true;
+        }
+    }
+
+    return expression;
+}
+
 ///\return This method is responsible for parsing through
 /// and evaluating the expression. Once evaluated, we can
 /// then simplify.

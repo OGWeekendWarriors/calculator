@@ -33,6 +33,7 @@ public:
     inline int evaluate(string tokens);
     inline int applyOp(int a, int b, char op);
     inline int precedence(char op);
+    inline string format(string expression);
 };
 
 #endif
