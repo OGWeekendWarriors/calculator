@@ -31,3 +31,31 @@ string Algebra::simplifyExpression()
 
     return result;
 }
+
+///\return This method is responsible for parsing through
+/// and evaluating the expression. Once evaluated, we can
+/// then simplify.
+inline int Algebra::evaluate(string tokens)
+{
+    return 0;
+}
+
+///\return This method applies the operation on the expression
+/// based off of a simple case switch. This is used for
+/// evaluating and so it is needed in order to simplify.
+inline int Algebra::applyOp(int a, int b, char op)
+{
+    return 0;
+}
+
+///\return This method determines the precedence an operator
+/// has. This helps set up the rules (PEMDAS) for evalutaing
+/// and simplifying expressions.
+inline int Algebra::precedence(char op)
+{
+    if (op == '+' || op == '-')
+        return 1;
+    if (op == '*' || op == '/')
+        return 2;
+    return 0;
+}
