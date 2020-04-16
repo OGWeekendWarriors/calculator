@@ -5,7 +5,6 @@ functionality for any algebraic operations for a symbolic
 calculator feature add on to the Microsoft Calculator.
 */
 #include "Algebra.h"
-#include <WinNls.h>
 
 using namespace std;
 
@@ -45,7 +44,17 @@ inline int Algebra::evaluate(string tokens)
 /// evaluating and so it is needed in order to simplify.
 inline int Algebra::applyOp(int a, int b, char op)
 {
-    return 0;
+    switch (op)
+    {
+    case '+':
+        return a + b;
+    case '-':
+        return a - b;
+    case '*':
+        return a * b;
+    case '/':
+        return a / b;
+    }
 }
 
 ///\return This method determines the precedence an operator
