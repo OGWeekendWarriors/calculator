@@ -90,6 +90,9 @@
       <Filter>CEngine</Filter>
     </ClCompile>
     <ClCompile Include="NumberFormattingUtils.cpp" />
+    <ClCompile Include="CEngine\PartialFrac.cpp">
+      <Filter>CEngine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Command.h" />
@@ -161,5 +164,8 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="NumberFormattingUtils.h" />
+    <ClInclude Include="CEngine\PartialFrac.h">
+      <Filter>CEngine</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

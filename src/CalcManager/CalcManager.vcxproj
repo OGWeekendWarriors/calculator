@@ -281,6 +281,7 @@
     <ClInclude Include="CalculatorHistory.h" />
     <ClInclude Include="CalculatorManager.h" />
     <ClInclude Include="CalculatorResource.h" />
+    <ClInclude Include="CEngine\PartialFrac.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="ExpressionCommand.h" />
     <ClInclude Include="ExpressionCommandInterface.h" />
@@ -311,6 +312,7 @@
     <ClCompile Include="CEngine\History.cpp" />
     <ClCompile Include="CEngine\CalcInput.cpp" />
     <ClCompile Include="CEngine\Number.cpp" />
+    <ClCompile Include="CEngine\PartialFrac.cpp" />
     <ClCompile Include="CEngine\Rational.cpp" />
     <ClCompile Include="CEngine\scicomm.cpp" />
     <ClCompile Include="CEngine\scidisp.cpp" />
