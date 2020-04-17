@@ -10,9 +10,11 @@ std::string PartialFrac::PartialFracDecomp(std::string equation)
     std::vector<std::string> fraction = splitEquationString(equation);
     std::string num = fraction[0];
     std::string denom = fraction[1];
-    if (!factoredForm(denom))
-        denom = factorDenom(denom);
-    std::vector<std::vector<int>> coeffMatrix = createCoeffMatrix(num, denom);
+    std::vector<std::vector<PartialFrac::factor>> factoredNum;
+    std::vector<std::vector<PartialFrac::factor>> factoredDenom;
+    factoredNum = factorExpr(num);
+    factoredDenom = factorExpr(denom);
+    std::vector<std::vector<int>> coeffMatrix = createCoeffMatrix(factoredNum, factoredDenom);
     std::vector<int> coeff = solveMatrix(coeffMatrix);
     std::vector<std::string> factors = splitDenom(denom);
     std::string finalstring = stringBuilder(coeff, factors);
@@ -57,3 +59,22 @@ std::vector<std::string> PartialFrac::splitEquationString(std::string equation)
     }
 }
 
+//bool PartialFrac::factoredForm(std::string denom)
+//{
+//    int pos = denom.find("^");
+//    if (pos == std::string::npos)
+//        return true;
+//    else
+//        return false;
+//}
+
+std::vector<std::vector<PartialFrac::factor>> PartialFrac::factorExpr(std::string equation)
+{
+    //probably going to use some Algebra class logic here, so I am going to leave this blank for now
+}
+
+std::vector<std::vector<int>> PartialFrac::createCoeffMatrix(std::vector<std::vector<PartialFrac::factor>> num, std::vector<std::vector<PartialFrac::factor>> denom)
+{
+    
+
+}
