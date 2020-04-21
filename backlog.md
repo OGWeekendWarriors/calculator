@@ -7,7 +7,7 @@
     Status: Assigned ___ Sprint _ 5pts P0 Priority _: Task 004 Create a symbolic parent class which will store the current symbolic mode and fetch the global equation string.
 ## User story B: As a calculator user, I want a symbolic calculator option, so I can solve algebraic expressions.
     Status: Assigned Nico Sprint 2 8pts P0 Priority 2: Task 001 Create an algebra class that can simplify expressions.
-	Status: Assigned ___ Sprint _ 5pts P0 Priority _: Task 002 Create an algebra class that can solve for a single variable.
+	Status: Assigned Nico Sprint 3 5pts P0 Priority _: Task 002 Create an algebra class that can solve for a single variable.
 	Status: Assigned ___ Sprint _ 2pts P0 Priority _: Task 003 Add the ability to change what symbolic operation is being performed, with the options of derivative, integral, partial fraction, on user input in the symbolic calculator window.
 # Feature 2
 ## User story A: As a calculator user, I want to be able to take the derivatives of expressions.
