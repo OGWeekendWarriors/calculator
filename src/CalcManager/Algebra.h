@@ -37,6 +37,8 @@ public:
     inline string format(string expression);
     inline void newExpression(string expression);
     inline string solveForVariable();
+    inline string getExpression();
+    inline void clearExpression();
 };
 
 #endif

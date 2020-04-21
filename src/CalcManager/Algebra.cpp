@@ -178,6 +178,7 @@ inline int Algebra::precedence(char op)
 /// algebra object. The constructor makes use of this.
 void Algebra::newExpression(string expression)
 {
+    clearExpression();
     this->unformattedExpression = expression;
     this->expression = format(expression);
 }
@@ -191,7 +192,6 @@ string Algebra::solveForVariable()
 
     for (int j = 0; j < n; j++)
     {
-
         if (unformattedExpression[j] == '+' || unformattedExpression[j] == '-')
         {
             if (j > i)
@@ -209,7 +209,6 @@ string Algebra::solveForVariable()
                 coeff += sign * stoi(unformattedExpression.substr(i, j - i));
             i = j + 1;
         }
-
     }
 
     if (i < n)
@@ -222,5 +221,23 @@ string Algebra::solveForVariable()
         return "No solution";
 
     int ans = -total / coeff;
-    return to_string(ans);
+    return "x = " + to_string(ans);
+}
+
+///\return A getter function is useful for a parent class to get
+/// more information on what expression is being handled. It will
+/// reutrn the raw unformatted version to avoid any complications.
+string Algebra::getExpression()
+{
+    return unformattedExpression;
+}
+
+///\return This function is added for a manager class or a parent
+/// class to empty the variables. It's purpose is to ensure that
+/// the variables are cleared of everything before having something
+/// set into them.
+void Algebra::clearExpression()
+{
+    this->unformattedExpression = "";
+    this->expression = "";
 }
