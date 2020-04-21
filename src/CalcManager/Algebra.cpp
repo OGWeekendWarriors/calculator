@@ -199,6 +199,19 @@ string Algebra::solveForVariable()
             i = j;
         }
 
+        else if (unformattedExpression[j] == 'x')
+        {
+            if ((i == j) || unformattedExpression[j - 1] == '+')
+                coeff += sign;
+            else if (unformattedExpression[j - 1] == '-')
+                coeff -= sign;
+            else
+                coeff += sign * stoi(unformattedExpression.substr(i, j - i));
+            i = j + 1;
+        }
+
+
+
     }
 
 }
