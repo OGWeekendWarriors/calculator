@@ -181,3 +181,24 @@ void Algebra::newExpression(string expression)
     this->unformattedExpression = expression;
     this->expression = format(expression);
 }
+
+///\return This function is created so that a user may solve for a
+/// variable in the symbolic calculator option.
+string Algebra::solveForVariable()
+{
+    int n = unformattedExpression.size(), sign = 1, coeff = 0;
+    int total = 0, i = 0;
+
+    for (int j = 0; j < n; j++)
+    {
+
+        if (unformattedExpression[j] == '+' || unformattedExpression[j] == '-')
+        {
+            if (j > i)
+                total += sign * stoi(unformattedExpression.substr(i, j - i));
+            i = j;
+        }
+
+    }
+
+}

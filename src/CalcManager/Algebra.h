@@ -36,7 +36,7 @@ public:
     inline int precedence(char op);
     inline string format(string expression);
     inline void newExpression(string expression);
-    inline string solveForVaraible();
+    inline string solveForVariable();
 };
 
 #endif
