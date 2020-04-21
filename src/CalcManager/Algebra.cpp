@@ -12,8 +12,7 @@ using namespace std;
 ///\return Constructor will instantiate the class variables.
 Algebra::Algebra(string expression)
 {
-    this->expression = format(expression);
-    this->unformattedExpression = expression;
+    newExpression(expression);
 }
 
 ///\return Since there is no garbage collector for C++, we must
@@ -172,4 +171,13 @@ inline int Algebra::precedence(char op)
     if (op == '*' || op == '/')
         return 2;
     return 0;
+}
+
+///\return This method allows the algebra object to create
+/// new expressions without having to instantiate a new
+/// algebra object. The constructor makes use of this.
+void Algebra::newExpression(string expression)
+{
+    this->unformattedExpression = expression;
+    this->expression = format(expression);
 }

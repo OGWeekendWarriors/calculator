@@ -35,6 +35,8 @@ public:
     inline int applyOp(int a, int b, char op);
     inline int precedence(char op);
     inline string format(string expression);
+    inline void newExpression(string expression);
+    inline string solveForVaraible();
 };
 
 #endif
