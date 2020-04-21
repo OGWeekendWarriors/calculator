@@ -210,8 +210,17 @@ string Algebra::solveForVariable()
             i = j + 1;
         }
 
-
-
     }
 
+    if (i < n)
+        total += sign * stoi(unformattedExpression.substr(i));
+
+    if (coeff == 0 && total == 0)
+        return "Infinite solutions";
+
+    if (coeff == 0 && total)
+        return "No solution";
+
+    int ans = -total / coeff;
+    return to_string(ans);
 }
