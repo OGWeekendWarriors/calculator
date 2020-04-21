@@ -349,6 +349,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="AboutFlyout.xaml" />
+    <Page Include="CalculatorSymbolicOperators.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\PreviewTagControl.xaml">
       <SubType>Designer</SubType>
     </Page>
