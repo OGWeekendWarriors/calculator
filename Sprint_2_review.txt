@@ -1,0 +1,21 @@
+Sprint 2 review meeting
+Velocity: 7.5pts
+Jared-
+  Created partial fraction decomposition class. Created the workflow for 
+  performing the decomposition. Implemented a method that can separate 
+  the numerator and denominator.
+Austin-
+  Completed Feature 1; User story A; Task001. Created skeleton of the Symbolic GUI. Working on implementation of various GUI elements.
+Nate-
+  Created methods to derive sin, cos, tan functions. Working on implementing csc, sec, cot functions.
+Nico-
+  Finished creating the framework of the algebra class (issue-6). Implemented functionality for simplifying 
+  a simple expression (no variables), and can also solve for a single variable in the presence of only 
+  addition and subtraction. Completes Feature 1; User story B; Task001 & Task002
+Josh-
+  Created the assets for the symbolic entry in the navigation pane (this was issue-8); 
+  this should now completely finish Feature 1, User story A, Task002.
+Group decisions-
+  1) Jared and Nico discussed that a symbolic parent class should be created. This class' main functionality 
+  will be to take in the global equation string and keep track of what symbolic mode will be used on the equation.
+  2) Nico will create a test project that all testing for symbolic class functionality will be done.
