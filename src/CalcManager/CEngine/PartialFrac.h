@@ -19,8 +19,8 @@ private:
     ///\returns a vector where [0] is the numerator and [1] is denominator
     std::vector<std::string> splitEquationString(std::string equation);
     struct factor {
-        char variable;
-        char operation;
+        std::string variable;
+        std::string operation;
         int constant; };
     ///\returns a factored form of denom using the factor struct to encapsulate a single factor
     std::vector<factor> factorExpr(std::string equation);

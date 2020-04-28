@@ -98,24 +98,25 @@ std::vector<std::vector<int>> PartialFrac::createCoeffMatrix(std::vector<Partial
     }
 
     //finding LHS equation
-    std::vector<std::string> LHS;
+    std::string expression;
     for (int i = 0; i < num.size(); i++)
     {
-        std::string expression;
-        for (int j = 0; j < num.size(); j++)
-        {
-            if (i != j)
-            {
-                std::string tmp = "(" + num[j].variable + " " + num[j].operation + " " + std::to_string(num[j].constant) + ")";
-                if (j == num.size() - 1)
-                    expression += tmp;
-                else
-                    expression += tmp + " * ";
-            }
-        }
-        // Algebra intermediate = Algebra(expression);
-        // intermediate.format();
-        // LHS[i] = intermediate.simplifyExpression();
+            std::string tmp = "(" + num[i].variable + " " + num[i].operation + " " + std::to_string(num[i].constant) + ")";
+            if (i == num.size() - 1)
+                expression += tmp;
+            else
+                expression += tmp + " * ";
+    }
+    // Algebra intermediate = Algebra(expression);
+    // intermediate.format();
+    // std::string LHS = intermediate.simplifyExpression();
+
+    //creating the matrix to store the values; I am resizing the vectors since I need to start at the bottom right instead of the top left
+    std::vector<std::vector<int>> matrix;
+    matrix.resize(RHS.size() + 1);
+    for (int i = 0; i < matrix.size(); i++)
+    {
+        matrix[i].resize(RHS.size());
     }
     //now that we have the expressions, now we need to add their scalars into the matrix
     //assuming that the Algebra class has return expressions ordered from highest power to lowest power
