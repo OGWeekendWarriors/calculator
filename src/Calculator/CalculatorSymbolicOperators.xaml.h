@@ -2,23 +2,23 @@
 // Licensed under the MIT License.
 
 //
-// CalculatorStandardOperators.xaml.h
-// Declaration of the CalculatorStandardOperators class
+// CalculatorSymbolicOperators.xaml.h
+// Declaration of the CalculatorSymbolicOperators class
 //
 
 #pragma once
 
-#include "Views/CalculatorStandardOperators.g.h"
+#include "Views/CalculatorSymbolicOperators.g.h"
 #include "Views/NumberPad.xaml.h"
 
 namespace CalculatorApp
 {
-    [Windows::Foundation::Metadata::WebHostHidden] public ref class CalculatorStandardOperators sealed
+    [Windows::Foundation::Metadata::WebHostHidden] public ref class CalculatorSymbolicOperators sealed
     {
     public:
-        CalculatorStandardOperators();
+        CalculatorSymbolicOperators();
 
-        DEPENDENCY_PROPERTY_OWNER(CalculatorStandardOperators);
+        DEPENDENCY_PROPERTY_OWNER(CalculatorSymbolicOperators);
 
         property bool IsErrorVisualState
         {
