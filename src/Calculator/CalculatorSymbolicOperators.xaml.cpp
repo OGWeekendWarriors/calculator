@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 
 //
-// CalculatorStandardOperators.xaml.cpp
-// Implementation of the CalculatorStandardOperators class
+// CalculatorSymbolicOperators.xaml.cpp
+// Implementation of the CalculatorSymbolicOperators class
 //
 
 #include "pch.h"
-#include "CalculatorStandardOperators.xaml.h"
+#include "CalculatorSymbolicOperators.xaml.h"
 #include "Controls/CalculatorButton.h"
 
 using namespace CalculatorApp;
@@ -25,18 +25,18 @@ using namespace Windows::UI::Xaml::Navigation;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
-CalculatorStandardOperators::CalculatorStandardOperators()
+CalculatorSymbolicOperators::CalculatorSymbolicOperators()
     : m_isErrorVisualState(false)
 {
     InitializeComponent();
 }
 
-bool CalculatorStandardOperators::IsErrorVisualState::get()
+bool CalculatorSymbolicOperators::IsErrorVisualState::get()
 {
     return m_isErrorVisualState;
 }
 
-void CalculatorStandardOperators::IsErrorVisualState::set(bool value)
+void CalculatorSymbolicOperators::IsErrorVisualState::set(bool value)
 {
     if (m_isErrorVisualState != value)
     {
