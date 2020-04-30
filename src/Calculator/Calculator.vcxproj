@@ -409,6 +409,9 @@
     <ClCompile Include="App.xaml.cpp">
       <DependentUpon>App.xaml</DependentUpon>
     </ClCompile>
+    <ClCompile Include="CalculatorSymbolicOperators.xaml.cpp">
+      <DependentUpon>CalculatorSymbolicOperators.xaml</DependentUpon>
+    </ClCompile>
     <ClCompile Include="Common\AppLifecycleLogger.cpp" />
     <ClCompile Include="Common\KeyboardShortcutManager.cpp" />
     <ClCompile Include="Common\ViewState.cpp" />
