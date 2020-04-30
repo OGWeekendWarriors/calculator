@@ -235,6 +235,9 @@
     <ClInclude Include="AboutFlyout.xaml.h">
       <DependentUpon>AboutFlyout.xaml</DependentUpon>
     </ClInclude>
+    <ClInclude Include="CalculatorSymbolicOperators.xaml.h">
+      <DependentUpon>CalculatorSymbolicOperators.xaml</DependentUpon>
+    </ClInclude>
     <ClInclude Include="Common\AppLifecycleLogger.h" />
     <ClInclude Include="Common\KeyboardShortcutManager.h" />
     <ClInclude Include="Common\ValidatingConverters.h" />
