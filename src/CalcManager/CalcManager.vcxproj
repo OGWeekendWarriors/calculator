@@ -292,6 +292,7 @@
     <ClInclude Include="Header Files\ICalcDisplay.h" />
     <ClInclude Include="Header Files\CalcInput.h" />
     <ClInclude Include="Header Files\IHistoryDisplay.h" />
+    <ClInclude Include="Header Files\Integral.h" />
     <ClInclude Include="Header Files\Number.h" />
     <ClInclude Include="Header Files\RadixType.h" />
     <ClInclude Include="Header Files\Rational.h" />
@@ -310,6 +311,7 @@
     <ClCompile Include="CEngine\CalcUtils.cpp" />
     <ClCompile Include="CEngine\History.cpp" />
     <ClCompile Include="CEngine\CalcInput.cpp" />
+    <ClCompile Include="CEngine\Integral.cpp" />
     <ClCompile Include="CEngine\Number.cpp" />
     <ClCompile Include="CEngine\Rational.cpp" />
     <ClCompile Include="CEngine\scicomm.cpp" />
