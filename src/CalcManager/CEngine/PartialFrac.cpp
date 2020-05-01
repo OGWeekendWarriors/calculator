@@ -77,7 +77,8 @@ std::vector<std::vector<int>> PartialFrac::createCoeffMatrix(std::vector<Partial
 {
     //finding the RHS equation
     //for each position, the value is equal to all other positions multiplied together.
-    std::vector<std::string> RHS;
+    std::vector<std::string> RHSexpressions;
+    std::string LHSexpression;
     for (int i = 0; i < denom.size(); i++)
     {
         std::string expression;
@@ -97,7 +98,7 @@ std::vector<std::vector<int>> PartialFrac::createCoeffMatrix(std::vector<Partial
         //RHS[i] = intermediate.simplifyExpression();
     }
 
-    //finding LHS equation
+    //finding LHS expression
     std::string expression;
     for (int i = 0; i < num.size(); i++)
     {
@@ -109,17 +110,46 @@ std::vector<std::vector<int>> PartialFrac::createCoeffMatrix(std::vector<Partial
     }
     // Algebra intermediate = Algebra(expression);
     // intermediate.format();
-    // std::string LHS = intermediate.simplifyExpression();
+    // LHSexpression = intermediate.simplifyExpression();
 
     //creating the matrix to store the values; I am resizing the vectors since I need to start at the bottom right instead of the top left
     std::vector<std::vector<int>> matrix;
-    matrix.resize(RHS.size() + 1);
+    matrix.resize(RHSexpressions.size() + 1);
     for (int i = 0; i < matrix.size(); i++)
     {
-        matrix[i].resize(RHS.size());
+        matrix[i].resize(RHSexpressions.size());
     }
     //now that we have the expressions, now we need to add their scalars into the matrix
-    //assuming that the Algebra class has return expressions ordered from highest power to lowest power
+    // assuming that the Algebra class has return expressions ordered from highest power to lowest power with 'x' as the variable
+    //since we have them all in strings with white spaces separating terms and operators, we can parse the string for values.
+    std::vector<std::vector<int>> RHScoeffs;
+    for (int i = 0; i < RHSexpressions.size(); i++)
+    {
+        int innerpos = 0;
+        std::vector<char> buffer;
+        for (std::string::reverse_iterator rit = RHSexpressions[i].rbegin(); rit != RHSexpressions[i].rend(); ++rit)
+        {
+            if (*rit == ' ')
+            {
+                if (buffer.size() != 0) //the above statement will trigger after we pass an operation character; this saves the code inside from executing on an empty buffer
+                {
+                    std::stringstream ss;
+                    for (int k = buffer.size() - 1; k >= 0; k++)
+                    {
+                        ss << buffer[k];
+                    }
+                    ss >> RHScoeffs[i][innerpos];
+                    innerpos++;
+                }
+                
+            }
+            else if (*rit == 'x' || *rit == '+' || *rit == '-' || *rit == '*' || *rit == '/') // ignoring variables and operations
+                continue;
+            else
+                buffer.push_back(*rit);
+        }
+    }
+    std::vector<int> LHScoeffs;
 
     
 }
