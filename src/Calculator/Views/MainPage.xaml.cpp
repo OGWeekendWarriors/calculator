@@ -159,6 +159,14 @@ void MainPage::OnAppPropertyChanged(_In_ Platform::Object ^ sender, _In_ Windows
                 m_calculator->AnimateCalculator(NavCategory::IsConverterViewMode(previousMode));
             }
         }
+        else if (newValue == ViewMode::Symbolic)
+        {
+            EnsureCalculator();
+            m_model->CalculatorViewModel->AreHistoryShortcutsEnabled = true;
+            m_model->CalculatorViewModel->HistoryVM->AreHistoryShortcutsEnabled = true;
+            m_calculator->AnimateCalculator(NavCategory::IsConverterViewMode(previousMode));
+            m_model->CalculatorViewModel->HistoryVM->ReloadHistory(newValue);
+        }
         else if (NavCategory::IsDateCalculatorViewMode(newValue))
         {
             if (m_model->CalculatorViewModel)
