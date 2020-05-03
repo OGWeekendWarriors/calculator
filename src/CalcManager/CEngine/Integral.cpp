@@ -17,13 +17,15 @@ std::string Integral::evaluateIntegral(std::string expression)
     //find integratedUpon variable
     integratedUpon = findIntegratedUpon(expression);
 
+    //make sure there is something in form of 'dx' at end of expression - if not, add it
+
     //split coefficients and exponents
     splitExpression(expression);
     
     //evaluate integal for each section partitioned by oeprators
     //build string and add C constant to end of string
     
-    std::string finalString = stringBuilder(coeff, exponent);
+    std::string finalString = stringBuilder(coeff, exponent, op);
 
 }
 
@@ -41,7 +43,7 @@ std::string Integral::simplify(std::string expression)
     return std::string();
 }
 
-std::string Integral::stringBuilder(std::vector<int> coeff, std::vector<int> factors) //add functionality
+std::string Integral::stringBuilder(std::vector<double> coeff, std::vector<int> exponent, std::vector<char> op) //add functionality
 {
     return std::string();
 }
@@ -65,5 +67,62 @@ void Integral::splitExpression(std::string expression)
 
     //functionality here (run through string, first char is coefficient if not integratedUpon, char after ^ is exponent - if no integratedUpon, exponent is 0)
     //each coefficient should be paired with an exponent for each term
+
+    //remove last char from expression (will be integratedUpon)
+
+    int termIndex = 0;       //keeps track of which term for coeff, exponent, op vectors
+
+    for (std::string::iterator it = expression.begin(); it != expression.end(); it++)
+    {
+
+        if (*it == ' ') //skip spaces
+        {
+            continue;
+        } else if (*it == '+' || *it == '-' || 'd') { //operator of + or - or d is found
+            op.push_back(*it);
+            termIndex++;
+        } else { //term is found
+
+            if (*it == integratedUpon) //no leading coefficient
+            {
+                coeff.at(termIndex) = 1;
+            }
+            else { // is leading coefficient
+
+                std::string coeffTmp = ""; // coeffTmp holds digits until next non-digit char
+                while (*it != integratedUpon || *it != '/' || *it != ' ' || *it != '+' || *it != '-')
+                {
+                    coeffTmp.push_back(*it);
+                    ++it;
+                }
+                //check if fraction - if so, change coeff to match
+                // write coeffTmp to coeff vector (parse string to double) ----------------------------------------------------------------------------------------------------------------------------------
+
+            }
+
+            //check if x is present - if so, do below
+
+            if (*(it + 1) == '^') {
+
+                std::string exponentTmp = ""; //exponentTmp holds digits until next non-digit char
+                it += 2; // moves it over integratedUpon var and ^ char
+                while (*it != ' ' || *it != '+' || *it != '-' || *it != '/' || *it != 'd') {
+                    exponentTmp.push_back(*it);
+                    ++it;
+                }
+                --it;
+                //write exponentTmp to exponent vector (parse string to int) ----------------------------------------------------------------------------------------------------------------------------
+
+            }
+
+            //check for '/' (fraction) in it+1 - if fraction, change coefficient for this term to match
+
+            //else for checking if x is present (x is not present)
+            //set exponent for this term to 0
+            //check for '/' (fraction) in it - if fraction, change coefficient for this term to match
+
+        }
+
+    }
 
 }

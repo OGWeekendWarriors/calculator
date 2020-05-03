@@ -18,22 +18,23 @@ class Integral
 
     private:
 
+        /// Vector which holds the coefficients of the expression (either int or fraction)
+        std::vector<double> coeff;
+        /// Vector which holds the exponents tied to each term (2 from x^2 etc.) - assuming int exponents
+        std::vector<int> exponent;
+        /// Vector which holds the operator following a term (d operator following last term)
+        std::vector<char> op;
+        /// Char to decide what is being integrated upon
+        char integratedUpon;
+
         ///\returns a simplified expression using Algebra class
         std::string simplify(std::string expression);
 
         ///\returns a string that represents the integrated expression
-        std::string stringBuilder(std::vector<int> coeff, std::vector<int> factors);
-
-        ///Variable to decide what is being integrated upon
-        char integratedUpon;
+        std::string stringBuilder(std::vector<double> coeff, std::vector<int> exponent, std::vector<char> op);
 
         ///\returns a char that represetns the variable being integrated on (if no defined, dx assumed)
         char findIntegratedUpon(std::string expression);
-
-        ///Vector which holds the coefficients of the expression
-        std::vector<int> coeff;
-        ///Vector which holds the exponents tied to each term (2 from x^2 etc.)
-        std::vector<int> exponent;
 
         ///\returns
         void splitExpression(std::string expression);
