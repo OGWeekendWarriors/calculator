@@ -46,6 +46,7 @@ Calculator::Calculator()
     : m_doAnimate(false)
     , m_isLastAnimatedInScientific(false)
     , m_isLastAnimatedInProgrammer(false)
+    , m_isLastAnimatedInSymbolic(false)
     , m_resultAnimate(false)
 {
     SetFontSizeResources();
