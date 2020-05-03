@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 /**
  * Module Name: PartialFrac.h
  * Author: Jared Gibson
@@ -14,8 +15,6 @@ public:
     PartialFrac();
     ///\returns the partial fraction decomposition of the equation provided
     std::string PartialFracDecomp(std::string equation);
-
-private:
     ///\returns a vector where [0] is the numerator and [1] is denominator
     std::vector<std::string> splitEquationString(std::string equation);
     struct factor {

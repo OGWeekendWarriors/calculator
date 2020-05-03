@@ -24,30 +24,31 @@ std::string PartialFrac::PartialFracDecomp(std::string equation)
 std::vector<std::string> PartialFrac::splitEquationString(std::string equation)
 {
     std::vector<std::string> tmp;
+    tmp.resize(2);
     //the following find statements scan for all types of ways the user could have typed their equation
-    int pos = equation.find(")/(");
-    if (!pos == std::string::npos)
+    size_t pos = equation.find(")/(");
+    if (pos != std::string::npos)
     {
         tmp[0] = equation.substr(0, pos + 1);
         tmp[1] = equation.substr(pos + 2, equation.length());
         return tmp;
     }
     pos = equation.find(")/");
-    if (!pos == std::string::npos)
+    if (pos != std::string::npos)
     {
         tmp[0] = equation.substr(0, pos + 1);
         tmp[1] = equation.substr(pos + 2, equation.length());
         return tmp;
     }
     pos = equation.find("/(");
-    if (!pos == std::string::npos)
+    if (pos != std::string::npos)
     {
         tmp[0] = equation.substr(0, pos);
         tmp[1] = equation.substr(pos + 1, equation.length());
         return tmp;
     }
     pos = equation.find("/");
-    if (!pos == std::string::npos)
+    if (pos != std::string::npos)
     {
         tmp[0] = equation.substr(0, pos);
         tmp[1] = equation.substr(pos + 1, equation.length());
@@ -71,6 +72,7 @@ std::vector<std::string> PartialFrac::splitEquationString(std::string equation)
 std::vector<PartialFrac::factor> PartialFrac::factorExpr(std::string equation)
 {
     //probably going to use some Algebra class logic here, so I am going to leave this blank for now
+    throw "Not implemented";
 }
 
 std::vector<std::vector<int>> PartialFrac::createCoeffMatrix(std::vector<PartialFrac::factor> num, std::vector<PartialFrac::factor> denom)
@@ -95,7 +97,7 @@ std::vector<std::vector<int>> PartialFrac::createCoeffMatrix(std::vector<Partial
         }
         //Algebra intermediate = Algebra(expression);
         //intermediate.format();
-        //RHS[i] = intermediate.simplifyExpression();
+        //RHSexpressions.push_back(intermediate.simplifyExpression());
     }
 
     //finding LHS expression
@@ -135,7 +137,7 @@ std::vector<std::vector<int>> PartialFrac::createCoeffMatrix(std::vector<Partial
                 if (buffer.size() != 0) //the above statement will trigger after we pass an operation character; this saves the code inside from executing on an empty buffer
                 {
                     std::stringstream ss;
-                    for (int k = buffer.size() - 1; k >= 0; k++)
+                    for (size_t k = buffer.size() - 1; k >= 0; k++)
                     {
                         ss << buffer[k];
                     }
@@ -161,7 +163,7 @@ std::vector<std::vector<int>> PartialFrac::createCoeffMatrix(std::vector<Partial
                 != 0) // the above statement will trigger after we pass an operation character; this saves the code inside from executing on an empty buffer
             {
                 std::stringstream ss;
-                for (int k = buffer.size() - 1; k >= 0; k++)
+                for (size_t k = buffer.size() - 1; k >= 0; k++)
                 {
                     ss << buffer[k];
                 }
@@ -196,7 +198,7 @@ std::vector<std::vector<int>> PartialFrac::createCoeffMatrix(std::vector<Partial
     //RHS coeffs
     //this will fill up the rest of the matrix
     int N = 0;
-    for (int i = matrix[matrix.size() - 2].size(); i >= 0; i++)
+    for (size_t i = matrix[matrix.size() - 2].size(); i >= 0; i++)
     {
         for (int M = 0; M > RHScoeffs.size(); M++)
         {
@@ -206,5 +208,19 @@ std::vector<std::vector<int>> PartialFrac::createCoeffMatrix(std::vector<Partial
     }
     
     return matrix;
-    
+}
+
+std::vector<std::string> PartialFrac::splitDenom(std::string denom)
+{
+    throw "Not implemented";
+}
+
+std::vector<int> PartialFrac::solveMatrix(std::vector<std::vector<int>> matrix)
+{
+    throw "Not implemented";
+}
+
+std::string PartialFrac::stringBuilder(std::vector<int> coeff, std::vector<std::string> factors)
+{
+    throw "Not implemented";
 }
