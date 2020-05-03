@@ -72,51 +72,64 @@ void Integral::splitExpression(std::string expression)
 
     int termIndex = 0;       //keeps track of which term for coeff, exponent, op vectors
 
-    for (std::string::iterator it = expression.begin(); it != expression.end(); it++)
-    {
+    for (std::string::iterator it = expression.begin(); it != expression.end(); it++) {
 
-        if (*it == ' ') //skip spaces
-        {
+        if (*it == ' ') { //skip spaces
             continue;
         } else if (*it == '+' || *it == '-' || 'd') { //operator of + or - or d is found
             op.push_back(*it);
             termIndex++;
         } else { //term is found
 
-            if (*it == integratedUpon) //no leading coefficient
-            {
+            if (*it == integratedUpon) { //no leading coefficient
                 coeff.at(termIndex) = 1;
             }
-            else { // is leading coefficient
+            else { // has leading coefficient
 
                 std::string coeffTmp = ""; // coeffTmp holds digits until next non-digit char
-                while (*it != integratedUpon || *it != '/' || *it != ' ' || *it != '+' || *it != '-')
-                {
+                while (*it != integratedUpon || *it != '/' || *it != ' ' || *it != '+' || *it != '-') {
                     coeffTmp.push_back(*it);
                     ++it;
                 }
-                //check if fraction - if so, change coeff to match
-                // write coeffTmp to coeff vector (parse string to double) ----------------------------------------------------------------------------------------------------------------------------------
+                double coeffDouble = stod(coeffTmp);
+                coeff.at(termIndex) = coeffDouble; //write parsed double value to coeff vector
 
-            }
+                coeffTmp = ""; //reset string to hold denominator if present
+                if (*it == '/') { //leading coefficient is a fraction
 
-            //check if x is present - if so, do below
-
-            if (*(it + 1) == '^') {
-
-                std::string exponentTmp = ""; //exponentTmp holds digits until next non-digit char
-                it += 2; // moves it over integratedUpon var and ^ char
-                while (*it != ' ' || *it != '+' || *it != '-' || *it != '/' || *it != 'd') {
-                    exponentTmp.push_back(*it);
                     ++it;
+                    while (*it != integratedUpon || *it != ' ' || *it != '+' || *it != '-') {
+                        coeffTmp.push_back(*it);
+                        ++it;
+                    }
+                    coeffDouble = coeff.at(termIndex) / stod(coeffTmp);
+                    coeff.at(termIndex) = coeffDouble; //overwrite parsed double value in coeff vector
+
                 }
-                --it;
-                //write exponentTmp to exponent vector (parse string to int) ----------------------------------------------------------------------------------------------------------------------------
 
             }
 
-            //check for '/' (fraction) in it+1 - if fraction, change coefficient for this term to match
+            if (*it == integratedUpon) //integratedUpon is present in term
+            {
+                if (*(it + 1) == '^') {
+                    std::string exponentTmp = ""; // exponentTmp holds digits until next non-digit char
+                    it += 2;                      // moves it over integratedUpon var and ^ char
+                    while (*it != ' ' || *it != '+' || *it != '-' || *it != '/' || *it != 'd') {
+                        exponentTmp.push_back(*it);
+                        ++it;
+                    }
+                    --it; //places iterator at last digit read
+                    // write exponentTmp to exponent vector (parse string to int) ----------------------------------------------------------------------------------------------------------------------------
+                    int exponentInt = stoi(exponentTmp);
+                    exponent.at(termIndex) = exponentInt;
+                }
 
+                // check for '/' (fraction) in it+1 - if fraction, change coefficient for this term to match
+            } else {
+
+                exponent.at(termIndex) = 0;
+
+            }
             //else for checking if x is present (x is not present)
             //set exponent for this term to 0
             //check for '/' (fraction) in it - if fraction, change coefficient for this term to match
