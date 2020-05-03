@@ -292,6 +292,12 @@ void Calculator::OnIsProgrammerPropertyChanged(bool /*oldValue*/, bool newValue)
     UpdatePanelViewState();
 }
 
+void Calculator::OnIsSymbolicPropertyChanged(bool /*oldValue*/, bool newValue)
+{
+    UpdateViewState();
+    UpdatePanelViewState();
+}
+
 void Calculator::OnIsAlwaysOnTopPropertyChanged(bool /*oldValue*/, bool newValue)
 {
     if (newValue)
