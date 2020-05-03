@@ -119,9 +119,10 @@ std::vector<std::vector<int>> PartialFrac::createCoeffMatrix(std::vector<Partial
     {
         matrix[i].resize(RHSexpressions.size());
     }
-    //now that we have the expressions, now we need to add their scalars into the matrix
-    // assuming that the Algebra class has return expressions ordered from highest power to lowest power with 'x' as the variable
-    //since we have them all in strings with white spaces separating terms and operators, we can parse the string for values.
+    /*Now that we have the expressions, now we need to add their scalars into the matrix
+      Assuming that the Algebra class has return expressions ordered from highest power to lowest power with 'x' as the variable
+      since we have them all in strings with white spaces separating terms and operators, we can parse the string for values.*/
+    //extracting RHS coefficients
     std::vector<std::vector<int>> RHScoeffs;
     for (int i = 0; i < RHSexpressions.size(); i++)
     {
@@ -138,18 +139,51 @@ std::vector<std::vector<int>> PartialFrac::createCoeffMatrix(std::vector<Partial
                     {
                         ss << buffer[k];
                     }
-                    ss >> RHScoeffs[i][innerpos];
-                    innerpos++;
+                    ss >> RHScoeffs[i][innerpos++];
                 }
                 
             }
             else if (*rit == 'x' || *rit == '+' || *rit == '-' || *rit == '*' || *rit == '/') // ignoring variables and operations
                 continue;
-            else
+            else    //number detected
                 buffer.push_back(*rit);
         }
     }
+    //extracting LHS coefficients
     std::vector<int> LHScoeffs;
+    int pos = 0;
+    std::vector<char> buffer;
+    for (std::string::reverse_iterator rit = LHSexpression.rbegin(); rit != LHSexpression.rend(); ++rit)
+    {
+        if (*rit == ' ')
+        {
+            if (buffer.size()
+                != 0) // the above statement will trigger after we pass an operation character; this saves the code inside from executing on an empty buffer
+            {
+                std::stringstream ss;
+                for (int k = buffer.size() - 1; k >= 0; k++)
+                {
+                    ss << buffer[k];
+                }
+                ss >> LHScoeffs[pos++];
+            }
+        }
+        else if (*rit == 'x' || *rit == '+' || *rit == '-' || *rit == '*' || *rit == '/') // ignoring variables and operations
+            continue;
+        else
+            buffer.push_back(*rit);
+    }
+
+    /*
+        The matrix is formatted as follows
+                        -------------------------------------------------------
+      s^n coeff of ->  | RHS[N-1] | RHS[N-2] | ... | RHS[1] | RHS[0] | LHS[M-1]|
+     s^n-1 coeff of->  | RHS[N-1] | RHS[N-2] | ... | RHS[1] | RHS[0] | LHS[M-2]|
+         ...           |                                             | ...     |
+        s coeff of ->  | RHS[N-1] | RHS[N-2] | ... | RHS[1] | RHS[0] | LHS[1]  |
+    const coeff of ->  | RHS[N-1] | RHS[N-2] | ... | RHS[1] | RHS[0] | LHS[0]  |
+                        -------------------------------------------------------
+    */
 
     
 }
