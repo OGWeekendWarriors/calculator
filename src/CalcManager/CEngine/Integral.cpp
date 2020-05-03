@@ -26,15 +26,23 @@ std::string Integral::evaluateIntegral(std::string expression)
         expression.append(tmp);
     }
 
+    coeff.resize(1);
+    exponent.resize(1);
+    op.resize(1);
+
     //split coefficients and exponents
     splitExpression(expression);
     
     //evaluate integal for each section partitioned by oeprators
     //a^x form has normal coeff, 0 for exponent, and true for integradedUponExponent
     //e^x form has 0 for coeff, 0 for exponent, and true for integratedUponExponent
+    for (int i = 0; i < op.size(); i++) {
+        evalTerm(i);
+    }
+
     //build string and add C constant to end of string
     
-    std::string finalString = stringBuilder(coeff, exponent, op);
+    std::string finalString = stringBuilder(evalCoeff, evalExponent, evalOp, evalIntegratedUponExponent);
 
 }
 
@@ -49,10 +57,10 @@ std::string Integral::simplify(std::string expression)
     */
 
     //temp return to avoid errors
-    return std::string();
+    return expression;
 }
 
-std::string Integral::stringBuilder(std::vector<double> coeff, std::vector<int> exponent, std::vector<char> op) //add functionality
+std::string Integral::stringBuilder(std::vector<double> evalCoeff, std::vector<int> evalExponent, std::vector<char> evalOp, std::vector<bool> evalIntegratedUponExponent) //add functionality
 {
     return std::string();
 }
@@ -158,5 +166,10 @@ void Integral::splitExpression(std::string expression) {
         }
 
     }
+
+}
+
+void Integral::evalTerm(int termIndex)
+{
 
 }
