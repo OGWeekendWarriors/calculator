@@ -41,6 +41,10 @@ void OperatorsPanel::OnIsBitFlipCheckedPropertyChanged(bool /*oldValue*/, bool n
     }
 }
 
+//made doxygen comment here
+///
+///When the IsErrorVisualState property is changed, this method will set the new value for IsErrorVisualState for the appropriate model
+///
 void OperatorsPanel::OnIsErrorVisualStatePropertyChanged(bool /*oldValue*/, bool newValue)
 {
     if (Model->IsStandard)
@@ -54,6 +58,10 @@ void OperatorsPanel::OnIsErrorVisualStatePropertyChanged(bool /*oldValue*/, bool
     else if (Model->IsProgrammer)
     {
         ProgrammerRadixOperators->IsErrorVisualState = newValue;
+    }
+    else if (Model->IsSymbolic)
+    {
+        SymbolicOperators->IsErrorVisualState = newValue;
     }
 }
 

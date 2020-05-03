@@ -63,6 +63,7 @@ public
         IsStandardMode = (int)CM::Command::ModeBasic,
         None = (int)CM::Command::CommandNULL,
         IsProgrammerMode = (int)CM::Command::ModeProgrammer,
+        IsSymbolicMode = (int)CM::Command::ModeSymbolic,
         DecButton = (int)CM::Command::CommandDec,
         OctButton = (int)CM::Command::CommandOct,
         HexButton = (int)CM::Command::CommandHex,

@@ -42,6 +42,7 @@ static constexpr int PRESSURE_ID = 14;
 static constexpr int ANGLE_ID = 15;
 static constexpr int CURRENCY_ID = 16;
 static constexpr int GRAPHING_ID = 17;
+static constexpr int SYMBOLIC_ID = 18;
 // ^^^ THESE CONSTANTS SHOULD NEVER CHANGE ^^^
 
 wchar_t* towchar_t(int number)
@@ -107,7 +108,13 @@ bool IsGraphingModeEnabled()
     return _isGraphingModeEnabledCached->Value;
 }
 
-// The order of items in this list determines the order of items in the menu.
+//made doxygen comment
+/**
+ *The following list creates the entries in the navigation panel.
+ *The order of the items in the navigation panel is determined by the order of this list.
+ *It is important to note that nameKey (the second L"" entry) DOES NOT name the navigation pane;
+ *you must edit the Resource.resw for a language with an entry for the new entry in order to have the pane named.
+ */
 static const list<NavCategoryInitializer> s_categoryManifest = [] {
     auto res = list<NavCategoryInitializer>{ NavCategoryInitializer{ ViewMode::Standard,
                                                                      STANDARD_ID,
@@ -128,6 +135,17 @@ static const list<NavCategoryInitializer> s_categoryManifest = [] {
                                                                      CategoryGroupType::Calculator,
                                                                      MyVirtualKey::Number2,
                                                                      L"2",
+                                                                     SUPPORTS_ALL,
+                                                                     true,
+                                                                     false },
+                                             NavCategoryInitializer{ ViewMode::Symbolic,
+                                                                     SYMBOLIC_ID,
+                                                                     L"Symbolic",
+                                                                     L"SymbolicMode",   //Note: if you want the navigation pane to have Symbolic on the tab, you need to go into the resource folder for a language and add a symbolic section there
+                                                                     L"\uF19B", //This is the glyph for the symbolic symbol in the font asset file
+                                                                     CategoryGroupType::Calculator,
+                                                                     MyVirtualKey::None,
+                                                                     nullptr,
                                                                      SUPPORTS_ALL,
                                                                      true,
                                                                      false } };

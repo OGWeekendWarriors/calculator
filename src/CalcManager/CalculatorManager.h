@@ -50,6 +50,7 @@ namespace CalculationManager
         std::unique_ptr<CCalcEngine> m_scientificCalculatorEngine;
         std::unique_ptr<CCalcEngine> m_standardCalculatorEngine;
         std::unique_ptr<CCalcEngine> m_programmerCalculatorEngine;
+        std::unique_ptr<CCalcEngine> m_symbolicCalculatorEngine;    //doxygen comment here?
         IResourceProvider* const m_resourceProvider;
         bool m_inHistoryItemLoadMode;
 
@@ -102,6 +103,7 @@ namespace CalculationManager
         void SetStandardMode();
         void SetScientificMode();
         void SetProgrammerMode();
+        void SetSymbolicMode();
         void SendCommand(_In_ Command command);
 
         void MemorizeNumber();
