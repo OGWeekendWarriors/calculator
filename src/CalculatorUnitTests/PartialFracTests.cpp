@@ -35,5 +35,47 @@ namespace Team11_UnitTests
             Assert::AreEqual(output3[0], expectedNum3);
             Assert::AreEqual(output3[1], expectedDenom3);
         }
+        //this method WILL fail since the algebra class is not implemented
+        TEST_METHOD(test_createCeoffMatrix)
+        {
+            PartialFrac testObj = PartialFrac();
+
+            std::vector<PartialFrac::factor> num;
+            PartialFrac::factor tmp1;
+            tmp1.variable = "x";
+            tmp1.operation = "+";
+            tmp1.constant = 1;
+            num.push_back(tmp1);
+
+            std::vector<PartialFrac::factor> denom;
+            tmp1.variable = "x";
+            tmp1.operation = "+";
+            tmp1.constant = 2;
+            denom.push_back(tmp1);
+            tmp1.variable = "x";
+            tmp1.operation = "+";
+            tmp1.constant = 3;
+            denom.push_back(tmp1);
+
+            /*
+            expected matrix
+            -------------
+            | 1 | 1 | 1 |
+            | 3 | 2 | 1 |
+            -------------
+            */
+            std::vector<std::vector<int>> expectedOutput;
+            expectedOutput.resize(3);
+            expectedOutput[0].push_back(1);
+            expectedOutput[0].push_back(3);
+            expectedOutput[1].push_back(1);
+            expectedOutput[1].push_back(2);
+            expectedOutput[3].push_back(1);
+            expectedOutput[3].push_back(1);
+
+            std::vector<std::vector<int>> output = testObj.createCoeffMatrix(num, denom);
+
+            Assert::AreEqual(output, expectedOutput);
+        }
     };
 }
