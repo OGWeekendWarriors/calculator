@@ -30,6 +30,9 @@
     <ClCompile Include="LocalizationServiceUnitTests.cpp" />
     <ClCompile Include="RationalTest.cpp" />
     <ClCompile Include="LocalizationSettingsUnitTests.cpp" />
+    <ClCompile Include="Example.cpp">
+      <Filter>Team 11 Unit Tests</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DateUtils.h" />
@@ -79,6 +82,9 @@
     </Filter>
     <Filter Include="Mocks">
       <UniqueIdentifier>{d3ec8922-022d-4531-8744-f65a872f3841}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Team 11 Unit Tests">
+      <UniqueIdentifier>{670781f1-638d-4b5e-b849-d38f9fb6b087}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
