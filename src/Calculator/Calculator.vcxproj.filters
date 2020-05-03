@@ -436,6 +436,7 @@
     </ClInclude>
     <ClInclude Include="Common\ViewState.h" />
     <ClInclude Include="CalculatorSymbolicOperators.g.h" />
+    <ClInclude Include="CalculatorSymbolicOperators.g.hpp" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest" />
