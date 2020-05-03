@@ -350,6 +350,7 @@ void Calculator::OnModeVisualStateCompleted(_In_ Object ^ sender, _In_ Object ^ 
 {
     m_isLastAnimatedInScientific = IsScientific;
     m_isLastAnimatedInProgrammer = IsProgrammer;
+    m_isLastAnimatedInSymbolic = IsSymbolic;
     if (m_doAnimate)
     {
         m_doAnimate = false;
