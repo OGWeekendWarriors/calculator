@@ -20,7 +20,7 @@ std::string Integral::evaluateIntegral(std::string expression)
     //make sure there is something in form of 'dx' at end of expression - if not, add it
     std::string tmp = "d";
     tmp.push_back(integratedUpon);
-    int pos = expression.find(tmp);
+    size_t pos = expression.find(tmp);
     if (pos == std::string::npos) { //expression not found
         expression.append(" ");
         expression.append(tmp);
@@ -43,7 +43,6 @@ std::string Integral::evaluateIntegral(std::string expression)
     }
 
     //build string and add C constant to end of string
-    
     std::string finalString = stringBuilder();
     return finalString;
 
@@ -72,8 +71,8 @@ char Integral::findIntegratedUpon(std::string expression)
 {
 
     //find 'dx' form and take just the char after 'd'
-    int pos = expression.find_last_of("d");
-    if (pos != std::string::npos && pos!= expression.length-1)
+    size_t pos = expression.find_last_of("d");
+    if (pos != std::string::npos && pos != (expression.length() - 1))
     {
         return expression.at(pos + 1);
     } else {
@@ -105,7 +104,7 @@ void Integral::splitExpression(std::string expression) {
                 coeff.at(termIndex) = 1;
             } else { // has leading coefficient
 
-                if (*it = 'e') {
+                if (*it == 'e') {
                     coeff.at(termIndex) = 0;
                     ++it;
                 } else {

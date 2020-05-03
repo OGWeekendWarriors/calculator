@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 /**
  * Module Name: Integral.h
  * Author: Josh Ehlinger
