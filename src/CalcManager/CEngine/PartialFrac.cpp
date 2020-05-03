@@ -175,15 +175,36 @@ std::vector<std::vector<int>> PartialFrac::createCoeffMatrix(std::vector<Partial
     }
 
     /*
-        The matrix is formatted as follows
-                        -------------------------------------------------------
-      s^n coeff of ->  | RHS[N-1] | RHS[N-2] | ... | RHS[1] | RHS[0] | LHS[M-1]|
-     s^n-1 coeff of->  | RHS[N-1] | RHS[N-2] | ... | RHS[1] | RHS[0] | LHS[M-2]|
-         ...           |                                             | ...     |
-        s coeff of ->  | RHS[N-1] | RHS[N-2] | ... | RHS[1] | RHS[0] | LHS[1]  |
-    const coeff of ->  | RHS[N-1] | RHS[N-2] | ... | RHS[1] | RHS[0] | LHS[0]  |
-                        -------------------------------------------------------
+        The matrix is formatted as follows:
+                        ----------------------------------------------------------------------------------------------------------------
+      s^n coeff of ->  | RHS[M][N-1]   | RHS[M][N-2]   | ... |    RHS[M][1]           |       RHS[M][0]        |       LHS[N-1]         |   matrix[x][0]
+     s^n-1 coeff of->  | RHS[M-1][N-1] | RHS[M-1][N-2] | ... |    RHS[M-1][1]         |       RHS[M-1][0]      |       LHS[N-2]         |   matrix[x][1]
+         ...           |    ...        |    ...        | ... |      ...               |         ...            |       ...              |   ...
+        s coeff of ->  | RHS[1][N-1]   | RHS[1][N-2]   | ... |    RHS[1][1]           |       RHS[1][0]        |       LHS[1]           |   matrix[x][matrix[x].size()-2]
+    const coeff of ->  | RHS[0][N-1]   | RHS[0][N-2]   | ... |    RHS[0][1]           |       RHS[0][0]        |       LHS[0]           |   matrix[x][matrix[x].size()-1]
+                        ----------------------------------------------------------------------------------------------------------------
+                         matrix[0]       matrix[1]       ...   matrix[matrix.size()-3]  matrix[matrix.size()-2]  matrix[matrix.size()-1]
     */
 
+    //LHS coeffs
+    //this will fill up the right-most column of the matrix
+    for (int N = 0; N < LHScoeffs.size(); N++)
+    {
+        matrix[matrix.size() - 1][matrix.size() - (N+1)] = LHScoeffs[N];
+    }
+
+    //RHS coeffs
+    //this will fill up the rest of the matrix
+    int N = 0;
+    for (int i = matrix[matrix.size() - 2].size(); i >= 0; i++)
+    {
+        for (int M = 0; M > RHScoeffs.size(); M++)
+        {
+            matrix[i][matrix[i].size() - (M + 1)] = RHScoeffs[M][N];
+        }
+        N++;
+    }
+    
+    return matrix;
     
 }

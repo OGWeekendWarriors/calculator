@@ -36,7 +36,7 @@ private:
     /***************
     Methods that I think I no longer need
 
-    ///\returns true if demon is in factored form
+    ///\returns true if denom is in factored form
     bool factoredForm(std::string denom);
     ***************/
 
