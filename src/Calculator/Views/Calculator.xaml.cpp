@@ -186,6 +186,12 @@ void Calculator::UpdateViewState()
         Model->IsDecimalEnabled = true;
         ResultsMVisualStateTrigger->MinWindowHeight = 544;
     }
+    else if (IsSymbolic)
+    {
+        state = L"Symbolic";
+        Model->IsDecimalEnabled = true;
+        ResultsMVisualStateTrigger->MinWindowHeight = 544;
+    }
     else
     {
         state = L"Standard";
