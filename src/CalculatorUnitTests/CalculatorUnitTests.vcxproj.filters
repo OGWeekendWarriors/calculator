@@ -33,6 +33,9 @@
     <ClCompile Include="Example.cpp">
       <Filter>Team 11 Unit Tests</Filter>
     </ClCompile>
+    <ClCompile Include="PartialFracTests.cpp">
+      <Filter>Team 11 Unit Tests</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DateUtils.h" />

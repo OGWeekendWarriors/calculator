@@ -198,7 +198,8 @@ std::vector<std::vector<int>> PartialFrac::createCoeffMatrix(std::vector<Partial
     //RHS coeffs
     //this will fill up the rest of the matrix
     int N = 0;
-    for (size_t i = matrix[matrix.size() - 2].size(); i >= 0; i++)
+    size_t startpos = matrix.size() - 2;
+    for (size_t i = matrix[startpos].size() - 1; i >= 0; i--)
     {
         for (int M = 0; M > RHScoeffs.size(); M++)
         {
