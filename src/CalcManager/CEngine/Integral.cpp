@@ -18,6 +18,13 @@ std::string Integral::evaluateIntegral(std::string expression)
     integratedUpon = findIntegratedUpon(expression);
 
     //make sure there is something in form of 'dx' at end of expression - if not, add it
+    std::string tmp = "d";
+    tmp.push_back(integratedUpon);
+    int pos = expression.find(tmp);
+    if (pos == std::string::npos) { //expression not found
+        expression.append(" ");
+        expression.append(tmp);
+    }
 
     //split coefficients and exponents
     splitExpression(expression);
@@ -63,7 +70,8 @@ char Integral::findIntegratedUpon(std::string expression)
 }
 
 void Integral::splitExpression(std::string expression) {
-    //remove last char from expression (will be integratedUpon)
+    
+    expression = expression.substr(0, expression.length() - 1); //remove integratedUpon after 'd' (last char)
 
     int termIndex = 0;       //keeps track of which term for coeff, exponent, op vectors
 
