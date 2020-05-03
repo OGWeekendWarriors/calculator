@@ -62,12 +62,7 @@ char Integral::findIntegratedUpon(std::string expression)
 
 }
 
-void Integral::splitExpression(std::string expression)
-{
-
-    //functionality here (run through string, first char is coefficient if not integratedUpon, char after ^ is exponent - if no integratedUpon, exponent is 0)
-    //each coefficient should be paired with an exponent for each term
-
+void Integral::splitExpression(std::string expression) {
     //remove last char from expression (will be integratedUpon)
 
     int termIndex = 0;       //keeps track of which term for coeff, exponent, op vectors
@@ -109,8 +104,8 @@ void Integral::splitExpression(std::string expression)
 
             }
 
-            if (*it == integratedUpon) //integratedUpon is present in term
-            {
+            if (*it == integratedUpon) { //integratedUpon is present in term
+
                 if (*(it + 1) == '^') {
                     std::string exponentTmp = ""; // exponentTmp holds digits until next non-digit char
                     it += 2;                      // moves it over integratedUpon var and ^ char
@@ -118,21 +113,27 @@ void Integral::splitExpression(std::string expression)
                         exponentTmp.push_back(*it);
                         ++it;
                     }
-                    --it; //places iterator at last digit read
-                    // write exponentTmp to exponent vector (parse string to int) ----------------------------------------------------------------------------------------------------------------------------
                     int exponentInt = stoi(exponentTmp);
                     exponent.at(termIndex) = exponentInt;
                 }
 
-                // check for '/' (fraction) in it+1 - if fraction, change coefficient for this term to match
+                // check for '/' (fraction) in it - if fraction, change coefficient for this term to match
+                if (*it == '/') { //leading coefficient is a fraction
+
+                    std::string coeffTmp = ""; //coeffTmp holds digits until next non-digit char
+                    ++it;
+                    while (*it != ' ' || *it != '+' || *it != '-') {
+                        coeffTmp.push_back(*it);
+                        ++it;
+                    }
+                    double coeffDouble = stod(coeffTmp);
+                    coeff.at(termIndex) = coeffDouble; //overwrite parsed double value in coeff vector
+
+                }
+
             } else {
-
                 exponent.at(termIndex) = 0;
-
             }
-            //else for checking if x is present (x is not present)
-            //set exponent for this term to 0
-            //check for '/' (fraction) in it - if fraction, change coefficient for this term to match
 
         }
 
