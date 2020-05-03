@@ -29,20 +29,23 @@ std::string Integral::evaluateIntegral(std::string expression)
     coeff.resize(1);
     exponent.resize(1);
     op.resize(1);
+    integratedUponExponent.resize(1);
 
     //split coefficients and exponents
     splitExpression(expression);
-    
+
+    evalCoeff.resize(coeff.size());
+    evalExponent.resize(exponent.size());
+    evalOverln.resize(evalCoeff.size());
     //evaluate integal for each section partitioned by oeprators
-    //a^x form has normal coeff, 0 for exponent, and true for integradedUponExponent
-    //e^x form has 0 for coeff, 0 for exponent, and true for integratedUponExponent
     for (int i = 0; i < op.size(); i++) {
         evalTerm(i);
     }
 
     //build string and add C constant to end of string
     
-    std::string finalString = stringBuilder(evalCoeff, evalExponent, evalOp, evalIntegratedUponExponent);
+    std::string finalString = stringBuilder();
+    return finalString;
 
 }
 
@@ -60,7 +63,7 @@ std::string Integral::simplify(std::string expression)
     return expression;
 }
 
-std::string Integral::stringBuilder(std::vector<double> evalCoeff, std::vector<int> evalExponent, std::vector<char> evalOp, std::vector<bool> evalIntegratedUponExponent) //add functionality
+std::string Integral::stringBuilder() //add functionality
 {
     return std::string();
 }
@@ -91,6 +94,10 @@ void Integral::splitExpression(std::string expression) {
             continue;
         } else if (*it == '+' || *it == '-' || 'd') { //operator of + or - or d is found
             op.push_back(*it);
+            coeff.resize(coeff.size() + 1);
+            exponent.resize(exponent.size() + 1);
+            op.resize(op.size() + 1);
+            integratedUponExponent.resize(integratedUponExponent.size() + 1);
             termIndex++;
         } else { //term is found
 
@@ -171,5 +178,24 @@ void Integral::splitExpression(std::string expression) {
 
 void Integral::evalTerm(int termIndex)
 {
+    // a^x form has normal coeff, 0 for exponent, and true for integradedUponExponent
+    // e^x form has 0 for coeff, 0 for exponent, and true for integratedUponExponent
+
+    //check for e^x
+    if (coeff.at(termIndex) == 0 && exponent.at(termIndex) == 0 && integratedUponExponent.at(termIndex) == true) {
+        evalCoeff.at(termIndex) = coeff.at(termIndex);
+        evalExponent.at(termIndex) = exponent.at(termIndex);
+        evalOverln.at(termIndex) = false;
+        return; //e^x does not change upon integration
+    }
+
+    //check for a^x
+    if (coeff.at(termIndex) != 0 && exponent.at(termIndex) == 0 && integratedUponExponent.at(termIndex) == true) {
+        evalCoeff.at(termIndex) = coeff.at(termIndex);
+        evalExponent.at(termIndex) = exponent.at(termIndex);
+        evalOverln.at(termIndex) = true;
+    }
+
+    //anything else is polynomial
 
 }
