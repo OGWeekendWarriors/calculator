@@ -161,6 +161,10 @@ Platform::String ^ Calculator::GetCurrentLayoutState()
     {
         return L"Scientific";
     }
+    else if (IsSymbolic)
+    {
+        return L"Symbolic";
+    }
     else
     {
         return L"Standard";
