@@ -194,8 +194,13 @@ void Integral::evalTerm(int termIndex)
         evalCoeff.at(termIndex) = coeff.at(termIndex);
         evalExponent.at(termIndex) = exponent.at(termIndex);
         evalOverln.at(termIndex) = true;
+        return; //a^x does no change coefficient or exponent upon integration
     }
 
     //anything else is polynomial
+    evalExponent.at(termIndex) = exponent.at(termIndex) + 1;
+    evalCoeff.at(termIndex) = coeff.at(termIndex) / evalExponent.at(termIndex);
+    evalOverln.at(termIndex) = false;
+    return;
 
 }
