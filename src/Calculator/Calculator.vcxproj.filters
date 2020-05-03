@@ -435,6 +435,7 @@
       <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="Common\ViewState.h" />
+    <ClInclude Include="CalculatorSymbolicOperators.g.h" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest" />
