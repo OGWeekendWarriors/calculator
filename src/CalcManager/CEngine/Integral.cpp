@@ -30,6 +30,8 @@ std::string Integral::evaluateIntegral(std::string expression)
     splitExpression(expression);
     
     //evaluate integal for each section partitioned by oeprators
+    //a^x form has normal coeff, 0 for exponent, and true for integradedUponExponent
+    //e^x form has 0 for coeff, 0 for exponent, and true for integratedUponExponent
     //build string and add C constant to end of string
     
     std::string finalString = stringBuilder(coeff, exponent, op);
@@ -86,28 +88,32 @@ void Integral::splitExpression(std::string expression) {
 
             if (*it == integratedUpon) { //no leading coefficient
                 coeff.at(termIndex) = 1;
-            }
-            else { // has leading coefficient
+            } else { // has leading coefficient
 
-                std::string coeffTmp = ""; // coeffTmp holds digits until next non-digit char
-                while (*it != integratedUpon || *it != '/' || *it != ' ' || *it != '+' || *it != '-') {
-                    coeffTmp.push_back(*it);
+                if (*it = 'e') {
+                    coeff.at(termIndex) = 0;
                     ++it;
-                }
-                double coeffDouble = stod(coeffTmp);
-                coeff.at(termIndex) = coeffDouble; //write parsed double value to coeff vector
-
-                coeffTmp = ""; //reset string to hold denominator if present
-                if (*it == '/') { //leading coefficient is a fraction
-
-                    ++it;
-                    while (*it != integratedUpon || *it != ' ' || *it != '+' || *it != '-') {
+                } else {
+                    std::string coeffTmp = ""; // coeffTmp holds digits until next non-digit char
+                    while (*it != integratedUpon || *it != '/' || *it != ' ' || *it != '+' || *it != '-') {
                         coeffTmp.push_back(*it);
                         ++it;
                     }
-                    coeffDouble = coeff.at(termIndex) / stod(coeffTmp);
-                    coeff.at(termIndex) = coeffDouble; //overwrite parsed double value in coeff vector
+                    double coeffDouble = stod(coeffTmp);
+                    coeff.at(termIndex) = coeffDouble; // write parsed double value to coeff vector
 
+                    coeffTmp = ""; // reset string to hold denominator if present
+                    if (*it == '/') { // leading coefficient is a fraction
+
+                        ++it;
+                        while (*it != integratedUpon || *it != ' ' || *it != '+' || *it != '-') {
+                            coeffTmp.push_back(*it);
+                            ++it;
+                        }
+                        coeffDouble = coeff.at(termIndex) / stod(coeffTmp);
+                        coeff.at(termIndex) = coeffDouble; // overwrite parsed double value in coeff vector
+
+                    }
                 }
 
             }
@@ -115,6 +121,7 @@ void Integral::splitExpression(std::string expression) {
             if (*it == integratedUpon) { //integratedUpon is present in term
 
                 if (*(it + 1) == '^') {
+                    integratedUponExponent.at(termIndex) = false;
                     std::string exponentTmp = ""; // exponentTmp holds digits until next non-digit char
                     it += 2;                      // moves it over integratedUpon var and ^ char
                     while (*it != ' ' || *it != '+' || *it != '-' || *it != '/' || *it != 'd') {
@@ -140,7 +147,12 @@ void Integral::splitExpression(std::string expression) {
                 }
 
             } else {
+                integratedUponExponent.at(termIndex) = false;
                 exponent.at(termIndex) = 0;
+                if (*it == '^' && *(it + 1) == integratedUpon) { //checks for ^x form
+                    it += 2;
+                    integratedUponExponent.at(termIndex) = true;
+                }
             }
 
         }

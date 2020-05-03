@@ -24,6 +24,8 @@ class Integral
         std::vector<int> exponent;
         /// Vector which holds the operator following a term (d operator following last term)
         std::vector<char> op;
+        /// Vector which holds a bool representing if the exponent is the integratedUpon var
+        std::vector<bool> integratedUponExponent;
         /// Char to decide what is being integrated upon
         char integratedUpon;
 
