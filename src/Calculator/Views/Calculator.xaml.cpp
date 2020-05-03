@@ -396,6 +396,14 @@ void Calculator::EnsureProgrammer()
     ProgrammerOperators->SetRadixButton(Model->CurrentRadixType);
 }
 
+void Calculator::EnsureSymbolic()
+
+    if (!SymbolicOperators)
+    {
+        this->FindName(L"SymbolicOperators");
+    }
+}
+
 void Calculator::OnCalcPropertyChanged(_In_ Object ^ sender, _In_ PropertyChangedEventArgs ^ e)
 {
     String ^ prop = e->PropertyName;
