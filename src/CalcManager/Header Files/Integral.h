@@ -17,7 +17,7 @@ class Integral
         ///\returns the integral of the expression provided
         std::string evaluateIntegral(std::string expression);
 
-    private:
+//    private:
 
         /// Vector which holds the coefficients of the expression (either int or fraction)
         std::vector<double> coeff;

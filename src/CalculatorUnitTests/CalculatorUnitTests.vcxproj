@@ -239,6 +239,7 @@
     <ClCompile Include="DateCalculatorUnitTests.cpp" />
     <ClCompile Include="Example.cpp" />
     <ClCompile Include="HistoryTests.cpp" />
+    <ClCompile Include="Integral Tests.cpp" />
     <ClCompile Include="LocalizationServiceUnitTests.cpp" />
     <ClCompile Include="LocalizationSettingsUnitTests.cpp" />
     <ClCompile Include="Mocks\CurrencyHttpClient.cpp" />

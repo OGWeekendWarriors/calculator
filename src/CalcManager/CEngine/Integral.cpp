@@ -26,11 +26,6 @@ std::string Integral::evaluateIntegral(std::string expression)
         expression.append(tmp);
     }
 
-    coeff.resize(1);
-    exponent.resize(1);
-    op.resize(1);
-    integratedUponExponent.resize(1);
-
     //split coefficients and exponents
     splitExpression(expression);
 
@@ -82,7 +77,11 @@ char Integral::findIntegratedUpon(std::string expression)
 }
 
 void Integral::splitExpression(std::string expression) {
-    
+
+    coeff.resize(1);
+    exponent.resize(1);
+    op.resize(1);
+    integratedUponExponent.resize(1);
     expression = expression.substr(0, expression.length() - 1); //remove integratedUpon after 'd' (last char)
 
     int termIndex = 0;       //keeps track of which term for coeff, exponent, op vectors
@@ -91,8 +90,8 @@ void Integral::splitExpression(std::string expression) {
 
         if (*it == ' ') { //skip spaces
             continue;
-        } else if (*it == '+' || *it == '-' || 'd') { //operator of + or - or d is found
-            op.push_back(*it);
+        } else if (*it == '+' || *it == '-' || *it == 'd') { //operator of + or - or d is found
+            op.at(termIndex) = (*it);
             coeff.resize(coeff.size() + 1);
             exponent.resize(exponent.size() + 1);
             op.resize(op.size() + 1);
@@ -109,7 +108,7 @@ void Integral::splitExpression(std::string expression) {
                     ++it;
                 } else {
                     std::string coeffTmp = ""; // coeffTmp holds digits until next non-digit char
-                    while (*it != integratedUpon || *it != '/' || *it != ' ' || *it != '+' || *it != '-') {
+                    while (*it != integratedUpon && *it != '/' && *it != ' ' && *it != '+' && *it != '-') {
                         coeffTmp.push_back(*it);
                         ++it;
                     }
@@ -120,7 +119,7 @@ void Integral::splitExpression(std::string expression) {
                     if (*it == '/') { // leading coefficient is a fraction
 
                         ++it;
-                        while (*it != integratedUpon || *it != ' ' || *it != '+' || *it != '-') {
+                        while (*it != integratedUpon && *it != ' ' && *it != '+' && *it != '-') {
                             coeffTmp.push_back(*it);
                             ++it;
                         }
@@ -138,7 +137,7 @@ void Integral::splitExpression(std::string expression) {
                     integratedUponExponent.at(termIndex) = false;
                     std::string exponentTmp = ""; // exponentTmp holds digits until next non-digit char
                     it += 2;                      // moves it over integratedUpon var and ^ char
-                    while (*it != ' ' || *it != '+' || *it != '-' || *it != '/' || *it != 'd') {
+                    while (*it != ' ' && *it != '+' && *it != '-' && *it != '/' && *it != 'd') {
                         exponentTmp.push_back(*it);
                         ++it;
                     }
@@ -150,14 +149,38 @@ void Integral::splitExpression(std::string expression) {
                 if (*it == '/') { //leading coefficient is a fraction
 
                     std::string coeffTmp = ""; //coeffTmp holds digits until next non-digit char
-                    ++it;
-                    while (*it != ' ' || *it != '+' || *it != '-') {
+                    it += 1;
+                    while (*it != ' ' && *it != '+' && *it != '-') {
                         coeffTmp.push_back(*it);
                         ++it;
                     }
-                    double coeffDouble = stod(coeffTmp);
+                    double coeffDouble = coeff.at(termIndex) / stod(coeffTmp);
                     coeff.at(termIndex) = coeffDouble; //overwrite parsed double value in coeff vector
 
+                }
+
+                if (*it == ' ' && *(it + 1) == '/' && *(it + 2) != ' ') { //leading coefficient is fraction (space before '/')
+                    std::string coeffTmp = ""; // coeffTmp holds digits until next non-digit char
+                    it += 2;
+                    while (*it != ' ' && *it != '+' && *it != '-')
+                    {
+                        coeffTmp.push_back(*it);
+                        ++it;
+                    }
+                    double coeffDouble = coeff.at(termIndex) / stod(coeffTmp);
+                    coeff.at(termIndex) = coeffDouble; // overwrite parsed double value in coeff vector
+                }
+
+                if (*it == ' ' && *(it + 1) == '/' && *(it + 2) == ' ') { //leading coefficient is fraction (space before and after '/')
+                    std::string coeffTmp = ""; // coeffTmp holds digits until next non-digit char
+                    it += 3;
+                    while (*it != ' ' && *it != '+' && *it != '-')
+                    {
+                        coeffTmp.push_back(*it);
+                        ++it;
+                    }
+                    double coeffDouble = coeff.at(termIndex) / stod(coeffTmp);
+                    coeff.at(termIndex) = coeffDouble; // overwrite parsed double value in coeff vector
                 }
 
             } else {

@@ -3,7 +3,7 @@
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
-namespace Example
+namespace Team11_UnitTests
 {
     ///
     /// An example to showcase how to create unit tests; in order to run tests
